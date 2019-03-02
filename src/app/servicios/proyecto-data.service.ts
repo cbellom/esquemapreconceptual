@@ -6,11 +6,14 @@ import {Proyecto} from '../modelos/proyecto';
 @Injectable({
   providedIn: 'root'
 })
-export class ProyectoDataService extends DataService<Proyecto> {
+export class ProyectoDataService extends DataService<Proyecto[]> {
 
   protected initialize() {
-    this.identificacdor = 'proyecto';
+    this.identificacdor = 'proyectos';
     this.load();
+    if (this.datos === null) {
+      this.setData([]);
+    }
   }
 
 }

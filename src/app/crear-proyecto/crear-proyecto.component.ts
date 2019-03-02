@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./crear-proyecto.component.scss']
 })
 export class CrearProyectoComponent implements OnInit {
-  private proyectos$: Observable<Proyecto>;
+  private proyectos$: Observable<Proyecto[]>;
   guardarActivo: boolean;
 
   constructor(private proyectoDataService: ProyectoDataService,
@@ -18,7 +18,7 @@ export class CrearProyectoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.guardarActivo = false;
+    this.guardarActivo = true;
     this.proyectos$ = this.proyectoDataService.datos$.asObservable();
   }
 
@@ -27,7 +27,14 @@ export class CrearProyectoComponent implements OnInit {
   }
 
   guardar() {
-
+    const proyecto: Proyecto = {
+      id: 1,
+      nombre: 'Test',
+      trabajo: null
+    };
+    console.log(this.proyectoDataService.datos);
+    const proyectos = this.proyectoDataService.datos.push(proyecto);
+    this.proyectoDataService.setData(proyectos);
   }
 
 }

@@ -10,14 +10,15 @@ export class DataService<T> {
   protected identificacdor: string;
 
   constructor() {
-    this.load();
+    this.initialize();
   }
 
   protected initialize() {
     console.log('init');
+    this.load();
   }
 
-  setData(datos: T) {
+  setData(datos: any) {
     this.datos = datos;
     this.datos$.next(datos);
     localStorage.setItem(this.identificacdor, JSON.stringify(datos));

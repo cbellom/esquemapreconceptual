@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class DesarrollarHistoriaUsuarioComponent implements OnInit {
   guardarActivo: boolean;
-  
+
   constructor(private router: Router) {
   }
 
