@@ -1,2 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.item {
+  background: red;
+  position: absolute;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 136px;
+  height: 60px;
+}
+
+body {
+  margin: 0;
+}
+
+.toolbar-icon {
+  padding: 0 14px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}

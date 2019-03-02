@@ -6,7 +6,7 @@ import {
   MatCheckboxModule,
   MatDatepickerModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatGridListModule,
   MatInputModule,
   MatMenuModule,
   MatNativeDateModule,
@@ -16,39 +16,32 @@ import {
   MatProgressSpinnerModule,
   MatRadioModule,
   MatSelectModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSliderModule, MatSlideToggleModule,
   MatSortModule,
-  MatTableModule,
+  MatTableModule, MatTabsModule, MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {OverlayModule} from '@angular/cdk/overlay';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   imports: [],
   exports: [
+    CommonModule,
     MatButtonModule,
-    MatButtonToggleModule,
+    MatToolbarModule,
     MatCardModule,
-    MatCheckboxModule,
+    MatIconModule,
+    MatGridListModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSidenavModule,
-    MatSortModule,
-    MatTableModule,
-    MatTooltipModule,
-    MatIconModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
+    MatSlideToggleModule,
     MatProgressBarModule,
+    MatSliderModule,
     MatMenuModule,
-    OverlayModule,
-
+    MatTabsModule
   ],
 })
 export class MaterialModule {
