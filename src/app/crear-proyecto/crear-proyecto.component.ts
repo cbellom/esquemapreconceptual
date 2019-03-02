@@ -3,6 +3,7 @@ import {ProyectoDataService} from '../servicios/proyecto-data.service';
 import {Observable} from 'rxjs';
 import {Proyecto} from '../modelos/proyecto';
 import {Router} from '@angular/router';
+import {MiembrosDataService} from '../servicios/miembros-data.service';
 
 @Component({
   selector: 'app-crear-proyecto',
@@ -10,16 +11,18 @@ import {Router} from '@angular/router';
   styleUrls: ['./crear-proyecto.component.scss']
 })
 export class CrearProyectoComponent implements OnInit {
-  private proyectos$: Observable<Proyecto[]>;
+  private proyectos: Proyecto[];
   guardarActivo: boolean;
 
   constructor(private proyectoDataService: ProyectoDataService,
+              private miembrosDataService: MiembrosDataService,
               private router: Router) {
   }
 
   ngOnInit() {
     this.guardarActivo = true;
-    this.proyectos$ = this.proyectoDataService.datos$.asObservable();
+    this.proyectos = this.proyectoDataService.datos;
+    this.proyectoDataService.datos$.subscribe(value => this.proyectos = value);
   }
 
   navegarEsquema() {
@@ -30,10 +33,13 @@ export class CrearProyectoComponent implements OnInit {
     const proyecto: Proyecto = {
       id: 1,
       nombre: 'Test',
-      trabajo: null
+      trabajo: {
+        estado: null,
+        horizonteMaximo: null,
+        horizonteMinimo: null
+      }
     };
-    console.log(this.proyectoDataService.datos);
-    const proyectos = this.proyectoDataService.datos.push(proyecto);
+    const proyectos = this.proyectoDataService.datos.concat(proyecto);
     this.proyectoDataService.setData(proyectos);
   }
 
