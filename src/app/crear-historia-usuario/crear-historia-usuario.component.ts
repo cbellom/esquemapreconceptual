@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-crear-historia-usuario',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crear-historia-usuario.component.scss']
 })
 export class CrearHistoriaUsuarioComponent implements OnInit {
+  guardarActivo: boolean;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  navegarEsquema() {
+    this.router.navigateByUrl('/esquema');
+  }
+
+  guardar() {
+
   }
 
 }
