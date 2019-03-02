@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Proyecto} from '../modelos/proyecto';
 import {Router} from '@angular/router';
 import {MiembrosDataService} from '../servicios/miembros-data.service';
+import {RolDataService} from '../servicios/rol-data.service';
 
 @Component({
   selector: 'app-crear-proyecto',
@@ -16,6 +17,7 @@ export class CrearProyectoComponent implements OnInit {
 
   constructor(private proyectoDataService: ProyectoDataService,
               private miembrosDataService: MiembrosDataService,
+              private rolDataService: RolDataService,
               private router: Router) {
   }
 
