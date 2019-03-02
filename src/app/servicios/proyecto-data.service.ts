@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
 import {DataService} from './data.service';
 import {Proyecto} from '../modelos/proyecto';
 

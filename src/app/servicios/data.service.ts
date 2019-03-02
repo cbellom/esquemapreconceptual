@@ -26,7 +26,7 @@ export class DataService<T> {
 
   load() {
     const datos = localStorage.getItem(this.identificacdor);
-    this.datos = JSON.parse(datos) as T;
+    this.datos = JSON.parse(datos);
     this.datos$.next(this.datos);
   }
 
