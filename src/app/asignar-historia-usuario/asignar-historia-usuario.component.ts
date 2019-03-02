@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-asignar-historia-usuario',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./asignar-historia-usuario.component.scss']
 })
 export class AsignarHistoriaUsuarioComponent implements OnInit {
+  guardarActivo: boolean;
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
   }
 
+  navegarEsquema() {
+    this.router.navigateByUrl('/esquema');
+  }
+
+  guardar() {
+
+  }
 }

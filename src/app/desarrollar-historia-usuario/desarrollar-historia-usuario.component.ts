@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-desarrollar-historia-usuario',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./desarrollar-historia-usuario.component.scss']
 })
 export class DesarrollarHistoriaUsuarioComponent implements OnInit {
-
-  constructor() { }
+  guardarActivo: boolean;
+  
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
+  }
+
+  navegarEsquema() {
+    this.router.navigateByUrl('/esquema');
+  }
+
+  guardar() {
+
   }
 
 }
