@@ -24,6 +24,7 @@ import {
 import {MatIconModule} from '@angular/material/icon';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {CommonModule} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [],
@@ -41,7 +42,9 @@ import {CommonModule} from '@angular/common';
     MatProgressBarModule,
     MatSliderModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    BrowserAnimationsModule,
+    MatSelectModule
   ],
 })
 export class MaterialModule {

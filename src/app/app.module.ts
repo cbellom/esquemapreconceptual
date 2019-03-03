@@ -10,6 +10,8 @@ import {AsignarHistoriaUsuarioComponent} from './asignar-historia-usuario/asigna
 import {DesarrollarHistoriaUsuarioComponent} from './desarrollar-historia-usuario/desarrollar-historia-usuario.component';
 import { CrearProyectoComponent } from './crear-proyecto/crear-proyecto.component';
 import {MaterialModule} from './material/material.module';
+import { SeleccionarRolComponent } from './modal/seleccionar-rol/seleccionar-rol.component';
+import { SeleccionarMiembroComponent } from './modal/seleccionar-miembro/seleccionar-miembro.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {MaterialModule} from './material/material.module';
     CrearHistoriaUsuarioComponent,
     AsignarHistoriaUsuarioComponent,
     DesarrollarHistoriaUsuarioComponent,
-    CrearProyectoComponent
+    CrearProyectoComponent,
+    SeleccionarRolComponent,
+    SeleccionarMiembroComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +31,10 @@ import {MaterialModule} from './material/material.module';
     MaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    SeleccionarRolComponent,
+    SeleccionarMiembroComponent
+  ]
 })
 export class AppModule { }

@@ -1,0 +1,9 @@
+<h4>Seleccione un miembro</h4>
+<mat-form-field>
+  <mat-select placeholder="Miembro" [(value)]="miembroSeleccionado">
+    <mat-option *ngFor="let miembro of miembros" [value]="miembro" [disabled]="!habilitado(miembro)">
+      {{miembro.nombre}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="cerrar()">Aceptar</button>

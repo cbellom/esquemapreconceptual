@@ -1,0 +1,9 @@
+<h4>Seleccione un rol</h4>
+<mat-form-field>
+  <mat-select placeholder="Rol" [(value)]="rolSeleccionado">
+    <mat-option *ngFor="let rol of roles" [value]="rol" [disabled]="!habilitado(rol)">
+      {{rol.nombre}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="cerrar()">Aceptar</button>

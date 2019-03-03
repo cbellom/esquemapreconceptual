@@ -12,10 +12,10 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <img src="assets/crear-proyecto.png" alt="" width="2853" height="702" usemap="#Map" id="crear-proyecto">
-<div id="id-rol" class="item"></div>
-<div id="nombre-rol" class="item"></div>
-<div id="id-miembro" class="item"></div>
-<div id="nombre-miembro" class="item"></div>
+<div id="id-rol" class="item" (click)="abrirRol()">ID = {{rol?.id}}</div>
+<div id="nombre-rol" class="item" (click)="abrirRol()">NOMBRE = {{rol?.nombre}}</div>
+<div id="id-miembro" class="item" (click)="abrirMiembro()">ID = {{miembro?.id}}</div>
+<div id="nombre-miembro" class="item" (click)="abrirMiembro()">NOMBRE = {{miembro?.nombre}}</div>
 <div id="id-proyecto" class="item"></div>
 <div id="nombre-proyecto" class="item"></div>
 
