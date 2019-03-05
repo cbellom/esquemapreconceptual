@@ -10,6 +10,8 @@ import {SeleccionarRolComponent} from '../modal/seleccionar-rol/seleccionar-rol.
 import {SeleccionarMiembroComponent} from '../modal/seleccionar-miembro/seleccionar-miembro.component';
 import {Rol, TipoRol} from '../modelos/rol';
 import {Miembro} from '../modelos/miembro';
+import {IngresarValorHojaComponent} from '../modal/ingresar-valor-hoja/ingresar-valor-hoja.component';
+import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
 
 @Component({
   selector: 'app-crear-proyecto',
@@ -18,9 +20,10 @@ import {Miembro} from '../modelos/miembro';
 })
 export class CrearProyectoComponent implements OnInit {
   private proyectos: Proyecto[];
-  guardarActivo: boolean;
   rol: Rol;
   miembro: Miembro;
+  nombreProyecto: string;
+  idProyecto: number;
 
   constructor(private proyectoDataService: ProyectoDataService,
               private miembrosDataService: MiembrosDataService,
@@ -30,9 +33,12 @@ export class CrearProyectoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.guardarActivo = true;
     this.proyectos = this.proyectoDataService.datos;
-    this.proyectoDataService.datos$.subscribe(value => this.proyectos = value);
+    this.idProyecto = this.proyectos.length + 1;
+    this.proyectoDataService.datos$.subscribe(value => {
+      this.idProyecto = value.length + 1;
+      return this.proyectos = value;
+    });
   }
 
   abrirMiembro() {
@@ -58,6 +64,22 @@ export class CrearProyectoComponent implements OnInit {
     });
   }
 
+  abrirNombre() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(IngresarValorHojaComponent, {
+      width: '500px',
+      data: {
+        tipoDatoHoja: TipoDatoHoja.texto,
+        nombre: 'Nombre del proyecto'
+      }
+    });
+    matDialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.nombreProyecto = value;
+      }
+    });
+  }
+
   private cargarMiembro(value) {
     if (value) {
       this.miembro = value;
@@ -71,14 +93,19 @@ export class CrearProyectoComponent implements OnInit {
     }
   }
 
+  datosRequeridosCompletos(): boolean {
+    return !!this.miembro && !!this.rol && !!this.nombreProyecto;
+  }
+
   navegarEsquema() {
     this.router.navigateByUrl('/esquema');
   }
 
   guardar() {
     const proyecto: Proyecto = {
-      id: 1,
-      nombre: 'Test',
+      id: this.idProyecto,
+      nombre: this.nombreProyecto,
+      creador: this.miembro.id,
       trabajo: {
         estado: null,
         horizonteMaximo: null,
@@ -87,6 +114,13 @@ export class CrearProyectoComponent implements OnInit {
     };
     const proyectos = this.proyectoDataService.datos.concat(proyecto);
     this.proyectoDataService.setData(proyectos);
+    this.borrarDatos();
+  }
+
+  borrarDatos() {
+    this.nombreProyecto = null;
+    this.miembro = null;
+    this.rol = null;
   }
 
 }

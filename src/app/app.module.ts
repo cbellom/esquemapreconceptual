@@ -12,6 +12,8 @@ import { CrearProyectoComponent } from './crear-proyecto/crear-proyecto.componen
 import {MaterialModule} from './material/material.module';
 import { SeleccionarRolComponent } from './modal/seleccionar-rol/seleccionar-rol.component';
 import { SeleccionarMiembroComponent } from './modal/seleccionar-miembro/seleccionar-miembro.component';
+import { IngresarValorHojaComponent } from './modal/ingresar-valor-hoja/ingresar-valor-hoja.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,17 +26,20 @@ import { SeleccionarMiembroComponent } from './modal/seleccionar-miembro/selecci
     CrearProyectoComponent,
     SeleccionarRolComponent,
     SeleccionarMiembroComponent,
+    IngresarValorHojaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
     SeleccionarRolComponent,
-    SeleccionarMiembroComponent
+    SeleccionarMiembroComponent,
+    IngresarValorHojaComponent
   ]
 })
 export class AppModule { }

@@ -44,7 +44,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatMenuModule,
     MatTabsModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule
   ],
 })
 export class MaterialModule {

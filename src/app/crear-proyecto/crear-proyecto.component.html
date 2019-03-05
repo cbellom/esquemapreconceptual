@@ -5,19 +5,28 @@
     </button>
     <span>Crear proyecto</span>
     <span class="toolbar-spacer"></span>
-    <button mat-raised-button color="primary" [disabled]="!guardarActivo" (click)="guardar()">
+    <button mat-raised-button color="primary" [disabled]="!datosRequeridosCompletos()" (click)="guardar()">
       <mat-icon>save</mat-icon>
-      Guardar
+      Crear
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
 <img src="assets/crear-proyecto.png" alt="" width="2853" height="702" usemap="#Map" id="crear-proyecto">
-<div id="id-rol" class="item" (click)="abrirRol()">ID = {{rol?.id}}</div>
-<div id="nombre-rol" class="item" (click)="abrirRol()">NOMBRE = {{rol?.nombre}}</div>
-<div id="id-miembro" class="item" (click)="abrirMiembro()">ID = {{miembro?.id}}</div>
-<div id="nombre-miembro" class="item" (click)="abrirMiembro()">NOMBRE = {{miembro?.nombre}}</div>
-<div id="id-proyecto" class="item"></div>
-<div id="nombre-proyecto" class="item"></div>
-
-
-<pre>{{proyectos | json}}</pre>
+<div id="id-rol" class="item" (click)="abrirRol()">
+  <p>ID = <span class="color-blue">{{rol?.id}}</span></p>
+</div>
+<div id="nombre-rol" class="item" (click)="abrirRol()">
+  <p>NOMBRE = <span class="color-blue">{{rol?.nombre}}</span></p>
+</div>
+<div id="id-miembro" class="item" (click)="abrirMiembro()">
+  <p>ID = <span class="color-blue">{{miembro?.id}}</span></p>
+</div>
+<div id="nombre-miembro" class="item" (click)="abrirMiembro()">
+  <p>NOMBRE = <span class="color-blue">{{miembro?.nombre}}</span></p>
+</div>
+<div id="id-proyecto" class="item">
+  <p>ID = <span class="color-blue">{{idProyecto}}</span></p>
+</div>
+<div id="nombre-proyecto" class="item" (click)="abrirNombre()">
+  <p>NOMBRE = <span class="color-blue">{{nombreProyecto}}</span></p>
+</div>
