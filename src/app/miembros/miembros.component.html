@@ -1,3 +1,26 @@
-<p>
-  miembros works!
-</p>
+<div class="members-container">
+  <h2 class="title">Miembros</h2>
+
+  <section class="labels">
+    <div class="column">
+      ID
+    </div>
+    <div class="column">
+      NOMBRE
+    </div>
+    <div class="column">
+      ROL
+    </div>
+  </section>
+  <section class="grid-info" *ngFor="let member of members; let i = index">
+    <div class="ids">
+      {{member.id}}
+    </div>
+    <div class="names">
+      {{member.nombre}}
+    </div>
+    <div class="creators">
+      {{roles[i]}}
+    </div>
+  </section>
+</div>

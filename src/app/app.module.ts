@@ -18,6 +18,7 @@ import { SprintsComponent } from './sprints/sprints.component';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { MiembrosComponent } from './miembros/miembros.component';
 import { RolesComponent } from './roles/roles.component';
+import { HistoriasUsuarioComponent } from './historias-usuario/historias-usuario.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RolesComponent } from './roles/roles.component';
     ProyectosComponent,
     MiembrosComponent,
     RolesComponent,
+    HistoriasUsuarioComponent,
   ],
   imports: [
     BrowserModule,

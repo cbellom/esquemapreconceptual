@@ -1,3 +1,45 @@
-<p>
-  sprints works!
-</p>
+<div class="members-container">
+  <h2 class="title">Sprints del Proyecto  (Nombre del Proyecto)</h2>
+
+  <section class="labels">
+    <div class="column">
+      #
+    </div>
+    <div class="column">
+      FECHA INICIO
+    </div>
+    <div class="column">
+      FECHA FIN
+    </div>
+    <div class="column">
+      VEL. ESTIMADA
+    </div>
+    <div class="column">
+      VEL. REAL
+    </div>
+    <div class="column">
+      CREADOR
+    </div>
+  </section>
+  <section class="grid-info" *ngFor="let sprint of sprints; let i = index">
+    <div class="ids">
+      {{sprint.id}}
+    </div>
+    <div class="dates">
+      <!--{{member.nombre}}-->
+    </div>
+    <div class="dates">
+      <!--{{member.nombre}}-->
+    </div>
+    <div class="vels">
+      <!--{{roles[i]}}-->
+    </div>
+    <div class="vels">
+      <!--{{roles[i]}}-->
+    </div>
+    <div class="creators">
+      <!--{{roles[i]}}-->
+    </div>
+  </section>
+</div>
+

@@ -10,6 +10,7 @@ import {ProyectosComponent} from './proyectos/proyectos.component';
 import {SprintsComponent} from './sprints/sprints.component';
 import {MiembrosComponent} from './miembros/miembros.component';
 import {RolesComponent} from './roles/roles.component';
+import {HistoriasUsuarioComponent} from './historias-usuario/historias-usuario.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/esquema', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'desarrollar-historia-usuario', component: DesarrollarHistoriaUsuarioComponent},
   {path: 'proyectos', component: ProyectosComponent},
   {path: 'sprints', component: SprintsComponent},
+  {path: 'historias-usuario', component: HistoriasUsuarioComponent},
   {path: 'miembros', component: MiembrosComponent},
   {path: 'roles', component: RolesComponent},
 ];
