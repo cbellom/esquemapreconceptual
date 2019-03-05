@@ -1,0 +1,24 @@
+<div class="roles-container">
+  <h2 class="title">Proyectos</h2>
+
+  <section class="labels">
+    <div class="column">
+      ID
+    </div>
+    <div class="column">
+      NOMBRE
+    </div>
+    <div class="column">
+      CREADOR
+    </div>
+  </section>
+  <section class="grid-info" *ngFor="let project of projects">
+    <div class="ids">
+      {{project.id}}
+    </div>
+    <div class="names">
+      {{project.nombre}}
+    </div>
+  </section>
+</div>
+

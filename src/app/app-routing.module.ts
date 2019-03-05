@@ -6,6 +6,10 @@ import {AsignarHistoriaUsuarioComponent} from './asignar-historia-usuario/asigna
 import {CrearHistoriaUsuarioComponent} from './crear-historia-usuario/crear-historia-usuario.component';
 import {DesarrollarHistoriaUsuarioComponent} from './desarrollar-historia-usuario/desarrollar-historia-usuario.component';
 import {CrearProyectoComponent} from './crear-proyecto/crear-proyecto.component';
+import {ProyectosComponent} from './proyectos/proyectos.component';
+import {SprintsComponent} from './sprints/sprints.component';
+import {MiembrosComponent} from './miembros/miembros.component';
+import {RolesComponent} from './roles/roles.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/esquema', pathMatch: 'full'},
@@ -15,6 +19,10 @@ const routes: Routes = [
   {path: 'asignar-historia-usuario', component: AsignarHistoriaUsuarioComponent},
   {path: 'crear-historia-usuario', component: CrearHistoriaUsuarioComponent},
   {path: 'desarrollar-historia-usuario', component: DesarrollarHistoriaUsuarioComponent},
+  {path: 'proyectos', component: ProyectosComponent},
+  {path: 'sprints', component: SprintsComponent},
+  {path: 'miembros', component: MiembrosComponent},
+  {path: 'roles', component: RolesComponent},
 ];
 
 @NgModule({

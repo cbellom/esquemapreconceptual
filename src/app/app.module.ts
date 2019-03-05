@@ -14,6 +14,10 @@ import { SeleccionarRolComponent } from './modal/seleccionar-rol/seleccionar-rol
 import { SeleccionarMiembroComponent } from './modal/seleccionar-miembro/seleccionar-miembro.component';
 import { IngresarValorHojaComponent } from './modal/ingresar-valor-hoja/ingresar-valor-hoja.component';
 import {FormsModule} from '@angular/forms';
+import { SprintsComponent } from './sprints/sprints.component';
+import { ProyectosComponent } from './proyectos/proyectos.component';
+import { MiembrosComponent } from './miembros/miembros.component';
+import { RolesComponent } from './roles/roles.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import {FormsModule} from '@angular/forms';
     SeleccionarRolComponent,
     SeleccionarMiembroComponent,
     IngresarValorHojaComponent,
+    SprintsComponent,
+    ProyectosComponent,
+    MiembrosComponent,
+    RolesComponent,
   ],
   imports: [
     BrowserModule,
