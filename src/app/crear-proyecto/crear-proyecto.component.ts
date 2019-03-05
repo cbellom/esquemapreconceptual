@@ -26,7 +26,6 @@ export class CrearProyectoComponent implements OnInit {
   idProyecto: number;
 
   constructor(private proyectoDataService: ProyectoDataService,
-              private miembrosDataService: MiembrosDataService,
               private rolDataService: RolDataService,
               private dialog: MatDialog,
               private router: Router) {

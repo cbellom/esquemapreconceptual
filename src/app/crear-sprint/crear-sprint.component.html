@@ -7,21 +7,43 @@
     <span class="toolbar-spacer"></span>
     <button mat-raised-button color="primary" [disabled]="!guardarActivo" (click)="guardar()">
       <mat-icon>save</mat-icon>
-      Guardar
+      Crear
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
 <img src="assets/crear-sprint.png" alt="" width="3150" height="773" usemap="#Map" id="imagen">
-<div id="id-rol" class="item"></div>
-<div id="nombre-rol" class="item"></div>
-<div id="id-miembro" class="item"></div>
-<div id="nombre-miembro" class="item"></div>
-<div id="id-proyecto" class="item"></div>
-<div id="nombre-proyecto" class="item"></div>
-<div id="id-sprint" class="item"></div>
-<div id="fecha-inicio-sprint" class="item"></div>
-<div id="fecha-final-sprint" class="item"></div>
-<div id="velocidad-estimada-sprint" class="item"></div>
-<div id="velocidad-real-sprint" class="item"></div>
+<div id="id-rol" class="item" (click)="abrirRol()">
+  <p>ID = <span class="color-blue">{{rol?.id}}</span></p>
+</div>
+<div id="nombre-rol" class="item" (click)="abrirRol()">
+  <p>NOMBRE = <span class="color-blue">{{rol?.nombre}}</span></p>
+</div>
+<div id="id-miembro" class="item" (click)="abrirMiembro()">
+  <p>ID = <span class="color-blue">{{miembro?.id}}</span></p>
+</div>
+<div id="nombre-miembro" class="item" (click)="abrirMiembro()">
+  <p>NOMBRE = <span class="color-blue">{{miembro?.nombre}}</span></p>
+</div>
+<div id="id-proyecto" class="item" (click)="abrirProyecto()">
+  <p>ID = <span class="color-blue">{{proyecto?.id}}</span></p>
+</div>
+<div id="nombre-proyecto" class="item" (click)="abrirProyecto()">
+  <p>NOMBRE = <span class="color-blue">{{proyecto?.nombre}}</span></p>
+</div>
+<div id="id-sprint" class="item">
+  <p>ID = <span class="color-blue">{{idSprint}}</span></p>
+</div>
+<div id="fecha-inicio-sprint" class="item" (click)="abrirFechaInicio()">
+  <p>FECHA INICIO = <span class="color-blue">{{fechaInicio | date: 'dd/MM/yyyy'}}</span></p>
+</div>
+<div id="fecha-final-sprint" class="item" (click)="abrirFechaFin()">
+  <p>FECHA FIN = <span class="color-blue">{{fechaFin | date: 'dd/MM/yyyy'}}</span></p>
+</div>
+<div id="velocidad-estimada-sprint" class="item cursor-deshabilitado">
+  <p>VELOCIDAD ESTIMADA = <span class="color-blue">{{velocidadEstimada}}</span></p>
+</div>
+<div id="velocidad-real-sprint" class="item cursor-deshabilitado">
+  <p>VELOCIDAD REAL = <span class="color-blue">{{velocidadReal}}</span></p>
+</div>
 
 <pre>{{sprints | json}}</pre>
