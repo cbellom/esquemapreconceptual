@@ -22,7 +22,6 @@ export class IngresarValorHojaComponent implements OnInit {
     this.tipoDatoHoja = this.data.tipoDatoHoja;
   }
 
-
   cerrar() {
     this.dialogRef.close(this.valor);
   }
