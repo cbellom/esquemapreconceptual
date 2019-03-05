@@ -14,17 +14,20 @@
     color: #333;
     display: flex;
     margin: 0 auto;
-    width: 50%;
-    .ids, .column {
+    width: 80%;
+    .ids, .names, .column {
       border-right: 1px solid #333;
       padding: 10px;
       text-align: center;
-      width: 35%;
+      width: 40%;
     }
-    .names {
+    .ids {
+      width: 20%;
+    }
+    .creators {
       padding: 10px;
       text-align: center;
-      width: 65%;
+      width: 40%;
     }
     &:nth-child(2n) {
       background: #fff;
@@ -37,9 +40,12 @@
     font-weight: bold;
     text-transform: uppercase;
     .column {
+      width: 40%;
+      &:first-child {
+        width: 20%;
+      }
       &:last-child {
         border-right: none;
-        width: 65%;
       }
     }
   }

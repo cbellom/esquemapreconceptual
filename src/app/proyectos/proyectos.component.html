@@ -1,4 +1,4 @@
-<div class="roles-container">
+<div class="projects-container">
   <h2 class="title">Proyectos</h2>
 
   <section class="labels">
@@ -12,12 +12,15 @@
       CREADOR
     </div>
   </section>
-  <section class="grid-info" *ngFor="let project of projects">
+  <section class="grid-info" *ngFor="let project of projects; let i = index">
     <div class="ids">
       {{project.id}}
     </div>
     <div class="names">
       {{project.nombre}}
+    </div>
+    <div class="creators">
+      {{creators[i]}}
     </div>
   </section>
 </div>
