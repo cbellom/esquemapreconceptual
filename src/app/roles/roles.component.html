@@ -1,0 +1,20 @@
+<div class="roles-container">
+  <h2 class="title">Roles</h2>
+
+  <section class="labels">
+    <div class="column">
+      ID
+    </div>
+    <div class="column">
+      NOMBRE
+    </div>
+  </section>
+  <section class="grid-info" *ngFor="let role of roles">
+    <div class="ids">
+      {{role.id}}
+    </div>
+    <div class="names">
+      {{role.nombre}}
+    </div>
+  </section>
+</div>

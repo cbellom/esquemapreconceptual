@@ -12,6 +12,10 @@ import { CrearProyectoComponent } from './crear-proyecto/crear-proyecto.componen
 import {MaterialModule} from './material/material.module';
 import { SeleccionarRolComponent } from './modal/seleccionar-rol/seleccionar-rol.component';
 import { SeleccionarMiembroComponent } from './modal/seleccionar-miembro/seleccionar-miembro.component';
+import { SprintsComponent } from './sprints/sprints.component';
+import { ProyectosComponent } from './proyectos/proyectos.component';
+import { MiembrosComponent } from './miembros/miembros.component';
+import { RolesComponent } from './roles/roles.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,10 @@ import { SeleccionarMiembroComponent } from './modal/seleccionar-miembro/selecci
     CrearProyectoComponent,
     SeleccionarRolComponent,
     SeleccionarMiembroComponent,
+    SprintsComponent,
+    ProyectosComponent,
+    MiembrosComponent,
+    RolesComponent,
   ],
   imports: [
     BrowserModule,

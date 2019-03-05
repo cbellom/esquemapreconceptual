@@ -1,0 +1,46 @@
+.projects-container {
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+  width: 80%;
+  .title {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .grid-info, .labels {
+    background: #f1f1f1;
+    border: 1px solid #333;
+    border-bottom: none;
+    color: #333;
+    display: flex;
+    margin: 0 auto;
+    width: 50%;
+    .ids, .column {
+      border-right: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+      width: 35%;
+    }
+    .names {
+      padding: 10px;
+      text-align: center;
+      width: 65%;
+    }
+    &:nth-child(2n) {
+      background: #fff;
+    }
+    &:last-child {
+      border-bottom: 1px solid #333;
+    }
+  }
+  .labels {
+    font-weight: bold;
+    text-transform: uppercase;
+    .column {
+      &:last-child {
+        border-right: none;
+        width: 65%;
+      }
+    }
+  }
+}
