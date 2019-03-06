@@ -13,4 +13,5 @@ export interface HistoriaUsuario {
   estado: EstadoHistoriaUsuario;
   responsable: Miembro;
   tamaño: number;
+  creador: number;
 }
