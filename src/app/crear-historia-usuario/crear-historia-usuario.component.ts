@@ -140,7 +140,7 @@ export class CrearHistoriaUsuarioComponent implements OnInit {
       descripcion: this.descripcionHistoria,
       estado: EstadoHistoriaUsuario.pendiente,
       responsable: null,
-      tamaño: this.tamanoHistoria,
+      tamano: this.tamanoHistoria,
       creador: this.miembro.id
     };
     const historias = this.historiasUsuarioDataService.datos.concat(historia);

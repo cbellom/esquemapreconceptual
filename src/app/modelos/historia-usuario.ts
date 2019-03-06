@@ -12,6 +12,6 @@ export interface HistoriaUsuario {
   descripcion: string;
   estado: EstadoHistoriaUsuario;
   responsable: Miembro;
-  tamaño: number;
+  tamano: number;
   creador: number;
 }

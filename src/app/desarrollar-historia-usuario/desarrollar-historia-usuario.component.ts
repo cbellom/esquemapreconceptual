@@ -1,5 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {SprintbacklogDataService} from '../servicios/sprint-backlog-data.service';
+import {Rol, TipoRol} from '../modelos/rol';
+import {Miembro} from '../modelos/miembro';
+import {Proyecto} from '../modelos/proyecto';
+import {Sprint} from '../modelos/sprint';
+import {HistoriaUsuario} from '../modelos/historia-usuario';
+import {MatDialog} from '@angular/material';
+import {RolDataService} from '../servicios/rol-data.service';
+import {SprintBacklog} from '../modelos/sprint-backlog';
+import {SeleccionarMiembroComponent} from '../modal/seleccionar-miembro/seleccionar-miembro.component';
+import {SeleccionarRolComponent} from '../modal/seleccionar-rol/seleccionar-rol.component';
+import {IngresarValorHojaComponent} from '../modal/ingresar-valor-hoja/ingresar-valor-hoja.component';
+import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
+import {SeleccionarProyectoComponent} from '../modal/seleccionar-proyecto/seleccionar-proyecto.component';
+import {SeleccionarSprintComponent} from '../modal/seleccionar-sprint/seleccionar-sprint.component';
+import {SeleccionarHistoriaUsuarioComponent} from '../modal/seleccionar-historia-usuario/seleccionar-historia-usuario.component';
 
 @Component({
   selector: 'app-desarrollar-historia-usuario',
@@ -7,9 +23,17 @@ import {Router} from '@angular/router';
   styleUrls: ['./desarrollar-historia-usuario.component.scss']
 })
 export class DesarrollarHistoriaUsuarioComponent implements OnInit {
-  guardarActivo: boolean;
+  private rol: Rol;
+  private miembro: Miembro;
+  private proyecto: Proyecto;
+  private sprint: Sprint;
+  private historiaUsuario: HistoriaUsuario;
+  private tamano: number;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private dialog: MatDialog,
+              private rolDataService: RolDataService,
+              private sprintbacklogDataService: SprintbacklogDataService) {
   }
 
   ngOnInit() {
@@ -20,7 +44,115 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
   }
 
   guardar() {
+    const x: SprintBacklog = {
+      idHistoriaUsuario: this.historiaUsuario.id,
+      idSprint: this.sprint.id,
+      tamano: this.tamano
+    };
+    const nuevo = this.sprintbacklogDataService.datos.concat(x);
+    this.sprintbacklogDataService.setData(nuevo);
+    this.actualizarVelocidades();
+    this.actualizarMetricas();
+    this.actualizarEstadoHistoriaDeUsuario();
+  }
 
+  private actualizarVelocidades() {
+    // TODO
+  }
+
+  private actualizarMetricas() {
+    // TODO
+  }
+
+
+  private actualizarEstadoHistoriaDeUsuario() {
+    // TODO
+  }
+
+  abrirMiembro() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(SeleccionarMiembroComponent, {
+      width: '500px',
+      data: {restriccionRoles: [TipoRol.desarrollador]}
+    });
+    matDialogRef.afterClosed().subscribe(value => {
+      this.cargarMiembro(value);
+    });
+  }
+
+  abrirRol() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(SeleccionarRolComponent, {
+      width: '500px',
+      data: {restriccionRoles: [TipoRol.scrumMaster]}
+    });
+    matDialogRef.afterClosed().subscribe(value => {
+      this.cargarRol(value);
+    });
+  }
+
+  private cargarMiembro(value) {
+    if (value) {
+      this.miembro = value;
+      this.rol = this.rolDataService.datos.find(value1 => value1.id === this.miembro.rol);
+    }
+  }
+
+  private cargarRol(value) {
+    if (value) {
+      this.rol = value;
+    }
+  }
+
+  abrirTamano() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(IngresarValorHojaComponent, {
+      width: '500px',
+      data: {
+        tipoDatoHoja: TipoDatoHoja.numero,
+        nombre: 'Tamaño de la historia de usuario desarrollada'
+      }
+    });
+    matDialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.tamano = value;
+      }
+    });
+  }
+
+  abrirProyecto() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(SeleccionarProyectoComponent, {
+      width: '500px',
+    });
+    matDialogRef.afterClosed().subscribe(value => {
+      this.proyecto = value;
+    });
+  }
+
+  abrirSprint() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(SeleccionarSprintComponent, {
+      width: '500px',
+    });
+    matDialogRef.afterClosed().subscribe(value => {
+      this.sprint = value;
+    });
+  }
+
+
+  abrirHistoriaUsuario() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(SeleccionarHistoriaUsuarioComponent, {
+      width: '500px',
+    });
+    matDialogRef.afterClosed().subscribe(value => {
+      this.historiaUsuario = value;
+    });
+  }
+
+  datosRequeridosCompletos(): boolean {
+    return !!this.proyecto && !!this.miembro && !!this.sprint && !!this.historiaUsuario && !!this.tamano;
   }
 
 }

@@ -1,4 +1,5 @@
 export enum TipoDatoHoja {
   texto,
-  fecha
+  fecha,
+  numero
 }

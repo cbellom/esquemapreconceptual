@@ -3,6 +3,9 @@
   <ng-container *ngIf="tipoDatoHoja === TipoDatoHoja.texto">
     <input matInput [placeholder]="nombre" [(ngModel)]="valor">
   </ng-container>
+  <ng-container *ngIf="tipoDatoHoja === TipoDatoHoja.numero">
+    <input matInput [placeholder]="nombre" [(ngModel)]="valor" type="number">
+  </ng-container>
   <ng-container *ngIf="tipoDatoHoja === TipoDatoHoja.fecha">
     <input matInput [matDatepicker]="picker" placeholder="Seleccione una fecha" [(ngModel)]="valor">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

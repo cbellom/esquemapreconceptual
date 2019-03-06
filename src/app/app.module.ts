@@ -20,6 +20,8 @@ import { MiembrosComponent } from './miembros/miembros.component';
 import { RolesComponent } from './roles/roles.component';
 import { HistoriasUsuarioComponent } from './historias-usuario/historias-usuario.component';
 import { SeleccionarProyectoComponent } from './modal/seleccionar-proyecto/seleccionar-proyecto.component';
+import { SeleccionarSprintComponent } from './modal/seleccionar-sprint/seleccionar-sprint.component';
+import { SeleccionarHistoriaUsuarioComponent } from './modal/seleccionar-historia-usuario/seleccionar-historia-usuario.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { SeleccionarProyectoComponent } from './modal/seleccionar-proyecto/selec
     RolesComponent,
     HistoriasUsuarioComponent,
     SeleccionarProyectoComponent,
+    SeleccionarSprintComponent,
+    SeleccionarHistoriaUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,9 @@ import { SeleccionarProyectoComponent } from './modal/seleccionar-proyecto/selec
     SeleccionarRolComponent,
     SeleccionarMiembroComponent,
     IngresarValorHojaComponent,
-    SeleccionarProyectoComponent
+    SeleccionarProyectoComponent,
+    SeleccionarSprintComponent,
+    SeleccionarHistoriaUsuarioComponent
   ]
 })
 export class AppModule { }

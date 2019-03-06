@@ -29,7 +29,7 @@ export class SeleccionarMiembroComponent implements OnInit {
   }
 
   habilitado(miembro: Miembro) {
-    const rol = this.roles.find(value => value.id === miembro.id);
+    const rol = this.roles.find(value => value.id === miembro.rol);
     return rol && !!this.restriccionRoles.find(value => value === rol.nombre);
   }
 
