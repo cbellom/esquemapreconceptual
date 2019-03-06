@@ -1,0 +1,9 @@
+<h4>Seleccione un proyecto</h4>
+<mat-form-field>
+  <mat-select placeholder="Proyecto" [(value)]="proyectoSeleccionado">
+    <mat-option *ngFor="let p of proyectos" [value]="p">
+      {{p.nombre}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="cerrar()">Aceptar</button>

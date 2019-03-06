@@ -11,6 +11,7 @@ import {SeleccionarRolComponent} from '../modal/seleccionar-rol/seleccionar-rol.
 import {MatDialog} from '@angular/material';
 import {IngresarValorHojaComponent} from '../modal/ingresar-valor-hoja/ingresar-valor-hoja.component';
 import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
+import {SeleccionarProyectoComponent} from '../modal/seleccionar-proyecto/seleccionar-proyecto.component';
 
 @Component({
   selector: 'app-crear-sprint',
@@ -145,12 +146,11 @@ export class CrearSprintComponent implements OnInit {
 
   abrirProyecto() {
     this.dialog.closeAll();
-    const matDialogRef = this.dialog.open(SeleccionarRolComponent, {
+    const matDialogRef = this.dialog.open(SeleccionarProyectoComponent, {
       width: '500px',
-      data: {restriccionRoles: [TipoRol.scrumMaster]}
     });
     matDialogRef.afterClosed().subscribe(value => {
-      this.cargarRol(value);
+      this.proyecto = value;
     });
   }
 }
