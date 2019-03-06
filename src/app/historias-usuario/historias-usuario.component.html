@@ -1,3 +1,45 @@
-<p>
-  historias-usuario works!
-</p>
+<div class="histories-container">
+  <h2 class="title">Historias de Usuario</h2>
+
+  <section class="labels">
+    <div class="column">
+      ID
+    </div>
+    <div class="column">
+      DESCRIPCIÓN
+    </div>
+    <div class="column">
+      ESTADO
+    </div>
+    <div class="column names">
+      RESPONSABLE
+    </div>
+    <div class="column">
+      TAMAÑO
+    </div>
+    <div class="column names">
+      CREADOR
+    </div>
+  </section>
+  <section class="grid-info" *ngFor="let history of histories; let i = index">
+    <div class="ids">
+      {{history.id}}
+    </div>
+    <div class="description">
+      {{history.descripcion}}
+    </div>
+    <div class="data">
+      {{history.estado}}
+    </div>
+    <div class="names">
+      {{history.responsable}}
+    </div>
+    <div class="ids">
+      {{history.tamano}}
+    </div>
+    <div class="names">
+      {{creators[i]}}
+    </div>
+  </section>
+</div>
+

@@ -1,20 +1,20 @@
-<div class="members-container">
+<div class="sprints-container">
   <h2 class="title">Sprints del Proyecto  (Nombre del Proyecto)</h2>
 
   <section class="labels">
     <div class="column">
       #
     </div>
-    <div class="column">
+    <div class="column dates">
       FECHA INICIO
     </div>
-    <div class="column">
+    <div class="column dates">
       FECHA FIN
     </div>
-    <div class="column">
+    <div class="column vels">
       VEL. ESTIMADA
     </div>
-    <div class="column">
+    <div class="column vels">
       VEL. REAL
     </div>
     <div class="column">
@@ -26,19 +26,19 @@
       {{sprint.id}}
     </div>
     <div class="dates">
-      <!--{{member.nombre}}-->
+      {{sprint.fechaInicio | date: 'dd/MM/yyyy'}}
     </div>
     <div class="dates">
-      <!--{{member.nombre}}-->
+      {{sprint.fechaFin | date: 'dd/MM/yyyy'}}
     </div>
     <div class="vels">
-      <!--{{roles[i]}}-->
+      {{sprint.velocidadEstimada}}
     </div>
     <div class="vels">
-      <!--{{roles[i]}}-->
+     {{sprint.velocidadReal}}
     </div>
     <div class="creators">
-      <!--{{roles[i]}}-->
+      {{creators[i]}}
     </div>
   </section>
 </div>

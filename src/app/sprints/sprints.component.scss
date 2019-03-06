@@ -1,4 +1,4 @@
-.projects-container {
+.sprints-container {
   margin: 0 auto;
   padding: 30px;
   text-align: center;
@@ -14,20 +14,31 @@
     color: #333;
     display: flex;
     margin: 0 auto;
-    width: 90%;
-    .ids, .names, .column, .vels {
+    width: 100%;
+    .ids, .names, .column, .dates, .vels {
       border-right: 1px solid #333;
       padding: 10px;
       text-align: center;
-      width: calc(90% / 5);
+      width: 40%;
     }
     .ids {
       width: 10%;
     }
+    .dates {
+      width: 17%;
+    }
+    .vels {
+      width: 16%;
+    }
     .creators {
       padding: 10px;
       text-align: center;
-      width: calc(90% / 5);
+      width: 24%;
+    }
+    .names {
+      &:last-child {
+        border-right: none;
+      }
     }
     &:nth-child(2n) {
       background: #fff;
@@ -40,13 +51,20 @@
     font-weight: bold;
     text-transform: uppercase;
     .column {
-      width: calc(90% / 5);
+      width: 24%;
       &:first-child {
         width: 10%;
       }
+
       &:last-child {
         border-right: none;
       }
+    }
+    .dates {
+      width: 17%;
+    }
+    .vels {
+      width: 16%;
     }
   }
 }

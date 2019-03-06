@@ -1,0 +1,77 @@
+.histories-container {
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+  width: 80%;
+  .title {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .grid-info, .labels {
+    background: #f1f1f1;
+    border: 1px solid #333;
+    border-bottom: none;
+    color: #333;
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    .ids, .names, .column, .description, .data {
+      border-right: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+      width: 40%;
+    }
+    .ids {
+      width: 10%;
+    }
+    .description {
+      width: 25%;
+    }
+    .data {
+      width: 15%;
+    }
+    .creators {
+      padding: 10px;
+      text-align: center;
+      width: 40%;
+    }
+    .names {
+      &:last-child {
+        border-right: none;
+      }
+    }
+    &:nth-child(2n) {
+      background: #fff;
+    }
+    &:last-child {
+      border-bottom: 1px solid #333;
+    }
+  }
+  .labels {
+    font-weight: bold;
+    text-transform: uppercase;
+    .column {
+      width: 40%;
+
+      &:first-child, &:nth-child(5) {
+        width: 10%;
+      }
+
+      &:nth-child(2) {
+        width: 25%;
+      }
+
+      &:nth-child(3) {
+        width: 15%;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+
+      .names {
+        width: 18%;
+      }
+    }
+  }
+}
