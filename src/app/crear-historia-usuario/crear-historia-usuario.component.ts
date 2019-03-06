@@ -145,7 +145,7 @@ export class CrearHistoriaUsuarioComponent implements OnInit {
     };
     const historias = this.historiasUsuarioDataService.datos.concat(historia);
     this.historiasUsuarioDataService.setData(historias);
-    this.borrarDatos()
+    this.borrarDatos();
   }
 
   borrarDatos() {
