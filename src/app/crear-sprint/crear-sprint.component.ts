@@ -19,7 +19,6 @@ import {SeleccionarProyectoComponent} from '../modal/seleccionar-proyecto/selecc
   styleUrls: ['./crear-sprint.component.scss']
 })
 export class CrearSprintComponent implements OnInit {
-  guardarActivo: boolean;
   private rol: Rol;
   private miembro: Miembro;
   private sprints: Sprint[];
@@ -37,7 +36,6 @@ export class CrearSprintComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.guardarActivo = true;
     this.sprints = this.sprintsDataService.datos;
     this.idSprint = this.sprints.length + 1;
     this.cargarVelocidadReal();
@@ -64,6 +62,7 @@ export class CrearSprintComponent implements OnInit {
     };
     const sprints = this.sprintsDataService.datos.concat(sprint);
     this.sprintsDataService.setData(sprints);
+    this.borrarDatos();
   }
 
   abrirMiembro() {
@@ -157,5 +156,14 @@ export class CrearSprintComponent implements OnInit {
 
   datosRequeridosCompletos(): boolean {
     return !!this.proyecto && !!this.miembro && !!this.fechaFin && !!this.fechaFin;
+  }
+
+
+  borrarDatos() {
+    this.fechaInicio = null;
+    this.fechaFin = null;
+    this.miembro = null;
+    this.rol = null;
+    this.proyecto = null;
   }
 }

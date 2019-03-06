@@ -23,31 +23,36 @@ export class MiembrosDataService extends DataService<Miembro[]> {
       },
       {
         id: 2,
-        nombre: 'Santiago Sanz Mora',
+        nombre: 'Alvaro Duque Macias',
         rol: 2
       },
       {
         id: 3,
-        nombre: 'Francisco Javier Mendez',
+        nombre: 'Santiago Sanz Mora',
         rol: 3
       },
       {
         id: 4,
-        nombre: 'Jorge Sanchez Gallardo',
+        nombre: 'Francisco Javier Mendez',
         rol: 3
       },
       {
         id: 5,
-        nombre: 'Daniel Segura Ruiz',
+        nombre: 'Jorge Sanchez Gallardo',
         rol: 3
       },
       {
         id: 6,
-        nombre: 'Omar Castro Carmona',
+        nombre: 'Daniel Segura Ruiz',
         rol: 3
       },
       {
         id: 7,
+        nombre: 'Omar Castro Carmona',
+        rol: 3
+      },
+      {
+        id: 8,
         nombre: 'Saúl Ortega Campos',
         rol: 3
       },

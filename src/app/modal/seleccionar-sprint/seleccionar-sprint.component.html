@@ -1,0 +1,9 @@
+<h4>Seleccione un sprint</h4>
+<mat-form-field>
+  <mat-select placeholder="Sprint" [(value)]="sprintSeleccionado">
+    <mat-option *ngFor="let s of sprints" [value]="s">
+      Sprint #{{s.id}} [{{s.fechaInicio |  date: 'dd/MM/yyyy'}} al {{s.fechaFin |  date: 'dd/MM/yyyy'}}]
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="cerrar()">Aceptar</button>

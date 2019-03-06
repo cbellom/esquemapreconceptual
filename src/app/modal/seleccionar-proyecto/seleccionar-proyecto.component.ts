@@ -1,8 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Miembro} from '../../modelos/miembro';
-import {Rol, TipoRol} from '../../modelos/rol';
-import {MiembrosDataService} from '../../servicios/miembros-data.service';
-import {RolDataService} from '../../servicios/rol-data.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ProyectoDataService} from '../../servicios/proyecto-data.service';
 import {Proyecto} from '../../modelos/proyecto';

@@ -1,0 +1,9 @@
+<h4>Seleccione una historia de usuario</h4>
+<mat-form-field>
+  <mat-select placeholder="Historia de usuario" [(value)]="historiaUsuario">
+    <mat-option *ngFor="let s of historiaUsuarios" [value]="s">
+      [{{s.id}}] - {{s.descripcion}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="cerrar()">Aceptar</button>
