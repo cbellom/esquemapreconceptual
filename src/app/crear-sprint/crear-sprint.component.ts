@@ -54,12 +54,13 @@ export class CrearSprintComponent implements OnInit {
 
   guardar() {
     const sprint: Sprint = {
-      id: 1,
-      idProyecto: 1,
-      velocidadEstimada: 10,
-      velocidadReal: null,
-      fechaInicio: new Date(),
-      fechaFin: new Date()
+      id: this.idSprint,
+      idProyecto: this.proyecto.id,
+      velocidadEstimada: +this.velocidadEstimada,
+      velocidadReal: +this.velocidadReal,
+      fechaInicio: this.fechaInicio,
+      fechaFin: this.fechaFin,
+      creador: this.miembro.id
     };
     const sprints = this.sprintsDataService.datos.concat(sprint);
     this.sprintsDataService.setData(sprints);
@@ -152,5 +153,9 @@ export class CrearSprintComponent implements OnInit {
     matDialogRef.afterClosed().subscribe(value => {
       this.proyecto = value;
     });
+  }
+
+  datosRequeridosCompletos(): boolean {
+    return !!this.proyecto && !!this.miembro && !!this.fechaFin && !!this.fechaFin;
   }
 }

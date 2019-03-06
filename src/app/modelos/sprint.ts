@@ -5,4 +5,5 @@ export interface Sprint {
   fechaFin: Date;
   velocidadEstimada: number;
   velocidadReal: number;
+  creador: number;
 }
