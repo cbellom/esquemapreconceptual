@@ -58,9 +58,12 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
   }
 
   guardarEstadoHU() {
+    const historial = this.sprintbacklogDataService.datos.filter(value => value.idHistoriaUsuario === this.historiaUsuario.id);
     const x: HistoriaUsuario = {
       ...this.historiaUsuario,
-      estado: EstadoHistoriaUsuario.finalizada
+      estado: this.historiaUsuario.tamano > historial.reduce((a, b) => a + b.tamano, 0)
+        ? EstadoHistoriaUsuario.enProgreso
+        : EstadoHistoriaUsuario.finalizada
     };
     const nuevo = this.obtenerHistoriasActualizadas(x);
     this.historiasUsuarioDataService.setData(nuevo);
@@ -77,7 +80,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     return nuevo;
   }
 
-  private obtenerBacklogActualizado (x: SprintBacklog): SprintBacklog[] {
+  private obtenerBacklogActualizado(x: SprintBacklog): SprintBacklog[] {
     let nuevo;
     const existe = !!this.sprintbacklogDataService.datos
       .find(value => value.idSprint === x.idSprint && value.idHistoriaUsuario === x.idHistoriaUsuario);

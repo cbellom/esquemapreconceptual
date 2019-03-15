@@ -5,6 +5,7 @@ import {SprintsDataService} from './servicios/sprint-data.service';
 import {EquipoDataService} from './servicios/equipo-data.service';
 import {Sprint} from './modelos/sprint';
 import {EstadoEquipo} from './modelos/equipo';
+import {SprintBacklog} from './modelos/sprint-backlog';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private proyectoDataService: ProyectoDataService,
               private sprintsDataService: SprintsDataService,
               private equipoDataService: EquipoDataService,
-              private sprintbacklogDataService: SprintbacklogDataService,) {
+              private sprintbacklogDataService: SprintbacklogDataService) {
   }
 
   ngOnInit() {
@@ -29,29 +30,34 @@ export class AppComponent implements OnInit {
 
 
   private actualizarVelocidades() {
-    // TODO
-
-
     this.sprintbacklogDataService.datos$.subscribe(backlog => {
-      const sprints: Sprint[] = [];
+      let sprints: Sprint[] = [];
       this.proyectoDataService.datos.forEach(proyecto => {
-        const sprintsDelProyecto: Sprint[] = this.sprintsDataService.datos.filter(sprint => {
-          return sprint.idProyecto === proyecto.id;
-        }).sort((a, b) => a.id - b.id);
-
-        console.log('1 ', sprintsDelProyecto);
-
+        let velocidadAnterior = null;
+        const sprintsDelProyecto: Sprint[] = this.obtenerSprintsOrdenados(proyecto);
         const sprintActualizados: Sprint[] = sprintsDelProyecto.map((sprint, index) => {
-          sprint.velocidadEstimada = index - 1 >= 0 ? sprintsDelProyecto[index - 1].velocidadReal : null;
-          sprint.velocidadReal = backlog.filter(x => x.idSprint === sprint.id)
-            .map(x => x.tamano ? x.tamano : 0)
-            .reduce((a, b) => a + b, 0);
+          sprint = this.actualizarVelocidadesSprint(sprint, velocidadAnterior, backlog);
+          velocidadAnterior = sprint.velocidadReal;
           return sprint;
         });
-        sprints.concat(sprintActualizados);
+        sprints = sprints.concat(sprintActualizados);
       });
-      this.sprintsDataService.setData(sprints);
+      setTimeout(() => this.sprintsDataService.setData(sprints), 2000);
     });
+  }
+
+  private actualizarVelocidadesSprint(sprint: Sprint, velocidadAnterior: number, backlog: SprintBacklog[]): Sprint {
+    sprint.velocidadEstimada = velocidadAnterior;
+    sprint.velocidadReal = backlog.filter(x => x.idSprint === sprint.id)
+      .map(x => x.tamano ? x.tamano : 0)
+      .reduce((a, b) => a + b, 0);
+    return sprint;
+  }
+
+  private obtenerSprintsOrdenados(proyecto) {
+    return this.sprintsDataService.datos.filter(sprint => {
+      return sprint.idProyecto === proyecto.id;
+    }).sort((a, b) => a.id - b.id);
   }
 
   private actualizarMetricas() {

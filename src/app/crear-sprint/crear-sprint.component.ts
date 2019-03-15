@@ -173,5 +173,6 @@ export class CrearSprintComponent implements OnInit {
     this.miembro = null;
     this.rol = null;
     this.proyecto = null;
+    this.velocidadEstimada = null;
   }
 }
