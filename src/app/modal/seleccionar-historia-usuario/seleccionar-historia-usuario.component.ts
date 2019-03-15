@@ -16,11 +16,11 @@ export class SeleccionarHistoriaUsuarioComponent implements OnInit {
 
   constructor(private historiasUsuarioDataService: HistoriasUsuarioDataService,
               private dialogRef: MatDialogRef<SeleccionarHistoriaUsuarioComponent>,
-              @Inject(MAT_DIALOG_DATA) public data) {
+              @Inject(MAT_DIALOG_DATA) public data: { proyecto: Proyecto }) {
   }
 
   ngOnInit() {
-    this.historiaUsuarios = this.historiasUsuarioDataService.datos;
+    this.historiaUsuarios = this.historiasUsuarioDataService.datos.filter(value => value.idProyecto === this.data.proyecto.id);
   }
 
   cerrar() {

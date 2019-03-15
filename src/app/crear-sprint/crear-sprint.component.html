@@ -31,7 +31,7 @@
   <p>NOMBRE = <span class="color-blue">{{proyecto?.nombre}}</span></p>
 </div>
 <div id="id-sprint" class="item">
-  <p>ID = <span class="color-blue">{{idSprint}}</span></p>
+  <p>ID = <span class="color-blue">{{proyecto ? idSprint : ''}}</span></p>
 </div>
 <div id="fecha-inicio-sprint" class="item" (click)="abrirFechaInicio()">
   <p>FECHA INICIO = <span class="color-blue">{{fechaInicio | date: 'dd/MM/yyyy'}}</span></p>

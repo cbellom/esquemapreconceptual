@@ -37,11 +37,9 @@ export class CrearSprintComponent implements OnInit {
 
   ngOnInit() {
     this.sprints = this.sprintsDataService.datos;
-    this.idSprint = this.sprints.length + 1;
     this.cargarVelocidadReal();
     this.cargarVelocidadEstimada();
     this.sprintsDataService.datos$.subscribe(value => {
-      this.idSprint = value.length + 1;
       return this.sprints = value;
     });
   }
@@ -113,6 +111,10 @@ export class CrearSprintComponent implements OnInit {
   }
 
   abrirFechaInicio() {
+    if (!this.proyecto) {
+      alert('Primero debe seleccionar un proyecto');
+      return;
+    }
     this.dialog.closeAll();
     const matDialogRef = this.dialog.open(IngresarValorHojaComponent, {
       width: '500px',
@@ -129,6 +131,10 @@ export class CrearSprintComponent implements OnInit {
   }
 
   abrirFechaFin() {
+    if (!this.proyecto) {
+      alert('Primero debe seleccionar un proyecto');
+      return;
+    }
     this.dialog.closeAll();
     const matDialogRef = this.dialog.open(IngresarValorHojaComponent, {
       width: '500px',
@@ -151,6 +157,7 @@ export class CrearSprintComponent implements OnInit {
     });
     matDialogRef.afterClosed().subscribe(value => {
       this.proyecto = value;
+      this.idSprint = this.sprints.filter(s => s.idProyecto === this.proyecto.id).length + 1;
     });
   }
 

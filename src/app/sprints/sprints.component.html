@@ -6,6 +6,9 @@
       #
     </div>
     <div class="column dates">
+      Proyecto
+    </div>
+    <div class="column dates">
       FECHA INICIO
     </div>
     <div class="column dates">
@@ -24,6 +27,9 @@
   <section class="grid-info" *ngFor="let sprint of sprints; let i = index">
     <div class="ids">
       {{sprint.id}}
+    </div>
+    <div class="dates">
+      {{sprint.idProyecto}}
     </div>
     <div class="dates">
       {{sprint.fechaInicio | date: 'dd/MM/yyyy'}}

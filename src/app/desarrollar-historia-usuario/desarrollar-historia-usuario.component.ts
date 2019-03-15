@@ -5,7 +5,7 @@ import {Rol, TipoRol} from '../modelos/rol';
 import {Miembro} from '../modelos/miembro';
 import {Proyecto} from '../modelos/proyecto';
 import {Sprint} from '../modelos/sprint';
-import {HistoriaUsuario} from '../modelos/historia-usuario';
+import {EstadoHistoriaUsuario, HistoriaUsuario} from '../modelos/historia-usuario';
 import {MatDialog} from '@angular/material';
 import {RolDataService} from '../servicios/rol-data.service';
 import {SprintBacklog} from '../modelos/sprint-backlog';
@@ -16,6 +16,7 @@ import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
 import {SeleccionarProyectoComponent} from '../modal/seleccionar-proyecto/seleccionar-proyecto.component';
 import {SeleccionarSprintComponent} from '../modal/seleccionar-sprint/seleccionar-sprint.component';
 import {SeleccionarHistoriaUsuarioComponent} from '../modal/seleccionar-historia-usuario/seleccionar-historia-usuario.component';
+import {HistoriasUsuarioDataService} from '../servicios/historia-usuario-data.service';
 
 @Component({
   selector: 'app-desarrollar-historia-usuario',
@@ -33,7 +34,8 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
   constructor(private router: Router,
               private dialog: MatDialog,
               private rolDataService: RolDataService,
-              private sprintbacklogDataService: SprintbacklogDataService) {
+              private sprintbacklogDataService: SprintbacklogDataService,
+              private historiasUsuarioDataService: HistoriasUsuarioDataService) {
   }
 
   ngOnInit() {
@@ -49,24 +51,53 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
       idSprint: this.sprint.id,
       tamano: this.tamano
     };
-    const nuevo = this.sprintbacklogDataService.datos.concat(x);
+    const nuevo = this.obtenerBacklogActualizado(x);
     this.sprintbacklogDataService.setData(nuevo);
-    this.actualizarVelocidades();
-    this.actualizarMetricas();
-    this.actualizarEstadoHistoriaDeUsuario();
+    this.guardarEstadoHU();
+    this.borrarDatos();
   }
 
-  private actualizarVelocidades() {
-    // TODO
+  guardarEstadoHU() {
+    const x: HistoriaUsuario = {
+      ...this.historiaUsuario,
+      estado: EstadoHistoriaUsuario.finalizada
+    };
+    const nuevo = this.obtenerHistoriasActualizadas(x);
+    this.historiasUsuarioDataService.setData(nuevo);
+    this.borrarDatos();
   }
 
-  private actualizarMetricas() {
-    // TODO
+  private obtenerHistoriasActualizadas(x: HistoriaUsuario): HistoriaUsuario[] {
+    const nuevo = this.historiasUsuarioDataService.datos.map(value => {
+      if (value.id === x.id) {
+        value.estado = x.estado;
+      }
+      return value;
+    });
+    return nuevo;
   }
 
+  private obtenerBacklogActualizado (x: SprintBacklog): SprintBacklog[] {
+    let nuevo;
+    const existe = !!this.sprintbacklogDataService.datos
+      .find(value => value.idSprint === x.idSprint && value.idHistoriaUsuario === x.idHistoriaUsuario);
+    if (existe) {
+      nuevo = this.sprintbacklogDataService.datos.map(value => {
+        if (value.idSprint === x.idSprint && value.idHistoriaUsuario === x.idHistoriaUsuario) {
+          value.tamano = this.tamano;
+        }
+        return value;
+      });
+    } else {
+      nuevo = this.sprintbacklogDataService.datos.concat(x);
+    }
+    return nuevo;
+  }
 
-  private actualizarEstadoHistoriaDeUsuario() {
-    // TODO
+  private borrarDatos() {
+    this.historiaUsuario = null;
+    this.sprint = null;
+    this.tamano = null;
   }
 
   abrirMiembro() {
@@ -84,7 +115,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     this.dialog.closeAll();
     const matDialogRef = this.dialog.open(SeleccionarRolComponent, {
       width: '500px',
-      data: {restriccionRoles: [TipoRol.scrumMaster]}
+      data: {restriccionRoles: [TipoRol.desarrollador]}
     });
     matDialogRef.afterClosed().subscribe(value => {
       this.cargarRol(value);
@@ -105,6 +136,10 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
   }
 
   abrirTamano() {
+    if (!this.sprint || !this.historiaUsuario) {
+      alert('Primero debe seleccionar un sprint y/o historia de usuario');
+      return;
+    }
     this.dialog.closeAll();
     const matDialogRef = this.dialog.open(IngresarValorHojaComponent, {
       width: '500px',
@@ -126,14 +161,25 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
       width: '500px',
     });
     matDialogRef.afterClosed().subscribe(value => {
+      if (this.proyecto && this.proyecto.id !== value.id) {
+        this.sprint = null;
+        this.historiaUsuario = null;
+      }
       this.proyecto = value;
     });
   }
 
   abrirSprint() {
+    if (!this.proyecto) {
+      alert('Primero debe seleccionar un proyecto');
+      return;
+    }
     this.dialog.closeAll();
     const matDialogRef = this.dialog.open(SeleccionarSprintComponent, {
       width: '500px',
+      data: {
+        proyecto: this.proyecto
+      }
     });
     matDialogRef.afterClosed().subscribe(value => {
       this.sprint = value;
@@ -142,9 +188,16 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
 
 
   abrirHistoriaUsuario() {
+    if (!this.proyecto) {
+      alert('Primero debe seleccionar un proyecto');
+      return;
+    }
     this.dialog.closeAll();
     const matDialogRef = this.dialog.open(SeleccionarHistoriaUsuarioComponent, {
       width: '500px',
+      data: {
+        proyecto: this.proyecto
+      }
     });
     matDialogRef.afterClosed().subscribe(value => {
       this.historiaUsuario = value;

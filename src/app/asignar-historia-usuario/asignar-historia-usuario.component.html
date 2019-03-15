@@ -5,21 +5,43 @@
     </button>
     <span>Asignar historia de usuario</span>
     <span class="toolbar-spacer"></span>
-    <button mat-raised-button color="primary" [disabled]="!guardarActivo" (click)="guardar()">
+    <button mat-raised-button color="primary" [disabled]="!datosRequeridosCompletos()" (click)="guardar()">
       <mat-icon>save</mat-icon>
       Guardar
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
 <img src="assets/asignar-historia.png" alt="" width="3120" height="1124" usemap="#Map" id="imagen">
-<div id="id-rol" class="item"></div>
-<div id="nombre-rol" class="item"></div>
-<div id="id-miembro" class="item"></div>
-<div id="nombre-miembro" class="item"></div>
-<div id="id-proyecto" class="item"></div>
-<div id="nombre-proyecto" class="item"></div>
-<div id="id-historia" class="item"></div>
-<div id="descripcion-historia" class="item"></div>
-<div id="estado-historia" class="item"></div>
-<div id="responsable-historia" class="item"></div>
-<div id="tamano-historia" class="item"></div>
+<div id="id-rol" class="item" (click)="abrirRol()">
+  <p>ID = <span class="color-blue">{{rol?.id}}</span></p>
+</div>
+<div id="nombre-rol" class="item" (click)="abrirRol()">
+  <p>NOMBRE = <span class="color-blue">{{rol?.nombre}}</span></p>
+</div>
+<div id="id-miembro" class="item" (click)="abrirMiembro()">
+  <p>ID = <span class="color-blue">{{miembro?.id}}</span></p>
+</div>
+<div id="nombre-miembro" class="item" (click)="abrirMiembro()">
+  <p>NOMBRE = <span class="color-blue">{{miembro?.nombre}}</span></p>
+</div>
+<div id="id-proyecto" class="item" (click)="abrirProyecto()">
+  <p>ID = <span class="color-blue">{{proyecto?.id}}</span></p>
+</div>
+<div id="nombre-proyecto" class="item" (click)="abrirProyecto()">
+  <p>NOMBRE = <span class="color-blue">{{proyecto?.nombre}}</span></p>
+</div>
+<div id="id-historia" class="item" (click)="abrirHistoriaUsuario()">
+  <p>ID = <span class="color-blue">{{historiaUsuario?.id}}</span></p>
+</div>
+<div id="descripcion-historia" class="item" (click)="abrirHistoriaUsuario()">
+  <p>DESCRIPCION = <span class="color-blue">{{historiaUsuario?.descripcion}}</span></p>
+</div>
+<div id="estado-historia" class="item" (click)="abrirHistoriaUsuario()">
+  <p>ESTADO = <span class="color-blue">{{historiaUsuario?.estado}}</span></p>
+</div>
+<div id="responsable-historia" class="item cursor-deshabilitado">
+  <p>RESPONSABLE = <span class="color-blue">{{historiaUsuario && miembro ? miembro.id : ''}}</span></p>
+</div>
+<div id="tamano-historia" class="item" (click)="abrirHistoriaUsuario()">
+  <p>TAMAÑO = <span class="color-blue">{{historiaUsuario?.responsable}}</span></p>
+</div>
