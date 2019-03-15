@@ -38,7 +38,6 @@ export class CrearSprintComponent implements OnInit {
   ngOnInit() {
     this.sprints = this.sprintsDataService.datos;
     this.cargarVelocidadReal();
-    this.cargarVelocidadEstimada();
     this.sprintsDataService.datos$.subscribe(value => {
       return this.sprints = value;
     });
@@ -74,9 +73,9 @@ export class CrearSprintComponent implements OnInit {
     });
   }
 
-  cargarVelocidadEstimada() {
-    if (this.sprints.length >= 1) {
-      this.velocidadEstimada = this.sprints[this.sprints.length - 1].velocidadReal + '';
+  cargarVelocidadEstimada(sprints: Sprint[]) {
+    if (sprints.length >= 1) {
+      this.velocidadEstimada = sprints[this.sprints.length - 1].velocidadReal + '';
     } else {
       this.velocidadEstimada = 'NULL';
     }
@@ -157,7 +156,9 @@ export class CrearSprintComponent implements OnInit {
     });
     matDialogRef.afterClosed().subscribe(value => {
       this.proyecto = value;
+      const sprints = this.sprints.filter(s => s.idProyecto === this.proyecto.id);
       this.idSprint = this.sprints.filter(s => s.idProyecto === this.proyecto.id).length + 1;
+      this.cargarVelocidadEstimada(sprints);
     });
   }
 

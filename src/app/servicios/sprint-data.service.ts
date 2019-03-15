@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {DataService} from './data.service';
-import {Proyecto} from '../modelos/proyecto';
 import {Sprint} from '../modelos/sprint';
 
 @Injectable({
