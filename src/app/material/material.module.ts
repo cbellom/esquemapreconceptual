@@ -1,28 +1,22 @@
 import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
-  MatButtonToggleModule,
   MatCardModule,
-  MatCheckboxModule,
   MatDatepickerModule,
   MatDialogModule,
-  MatFormFieldModule, MatGridListModule,
+  MatFormFieldModule,
+  MatGridListModule,
   MatInputModule,
   MatMenuModule,
   MatNativeDateModule,
-  MatPaginatorIntl,
-  MatPaginatorModule,
   MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
   MatSelectModule,
-  MatSidenavModule, MatSliderModule, MatSlideToggleModule,
-  MatSortModule,
-  MatTableModule, MatTabsModule, MatToolbarModule,
-  MatTooltipModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatTabsModule,
+  MatToolbarModule,
 } from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-import {OverlayModule} from '@angular/cdk/overlay';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 

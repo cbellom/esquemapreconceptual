@@ -4,7 +4,7 @@ import {ProyectoDataService} from './servicios/proyecto-data.service';
 import {SprintsDataService} from './servicios/sprint-data.service';
 import {EquipoDataService} from './servicios/equipo-data.service';
 import {Sprint} from './modelos/sprint';
-import {EstadoEquipo} from './modelos/equipo';
+import {Equipo} from './modelos/equipo';
 import {SprintBacklog} from './modelos/sprint-backlog';
 
 @Component({
@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.actualizarVelocidades();
     this.actualizarMetricas();
-    this.actualizarEstadoHistoriaDeUsuario();
   }
 
 
   private actualizarVelocidades() {
+    console.log('Actualizando velocidades');
     this.sprintbacklogDataService.datos$.subscribe(backlog => {
       let sprints: Sprint[] = [];
       this.proyectoDataService.datos.forEach(proyecto => {
@@ -47,10 +47,11 @@ export class AppComponent implements OnInit {
   }
 
   private actualizarVelocidadesSprint(sprint: Sprint, velocidadAnterior: number, backlog: SprintBacklog[]): Sprint {
+    const historiasDesarrolladas = backlog.filter(x => x.idSprint === sprint.id);
     sprint.velocidadEstimada = velocidadAnterior;
-    sprint.velocidadReal = backlog.filter(x => x.idSprint === sprint.id)
-      .map(x => x.tamano ? x.tamano : 0)
-      .reduce((a, b) => a + b, 0);
+    sprint.velocidadReal = historiasDesarrolladas.length === 0
+      ? null
+      : historiasDesarrolladas.map(x => x.tamano ? x.tamano : 0).reduce((a, b) => a + b, 0);
     return sprint;
   }
 
@@ -63,23 +64,54 @@ export class AppComponent implements OnInit {
   private actualizarMetricas() {
     // TODO
     this.actualizarDesviacion();
+    this.actualizarForecast();
   }
 
-
-  private actualizarEstadoHistoriaDeUsuario() {
+  private actualizarForecast() {
     // TODO
+    console.log('Actualizando forecast horizont');
   }
 
   private actualizarDesviacion() {
-    // todo
-    this.sprintsDataService.datos$.subscribe(value => {
-      console.log('Los datos cambiaron!!!', value);
-      console.log('Los datos del equibo son:', this.equipoDataService.datos);
-      const equipoActualizado = this.equipoDataService.datos;
-      // TODO: Logica para actualizar datos
-      equipoActualizado.estado = null;
-      equipoActualizado.porcentajeDesviacionEstandar = 0;
-      this.equipoDataService.setData(equipoActualizado);
+    console.log('Actualizando desviacion estandar');
+    this.sprintsDataService.datos$.subscribe(() => {
+      const equipos: Equipo[] = [];
+      this.proyectoDataService.datos.forEach(proyecto => {
+        const sprintsDelProyecto: Sprint[] = this.obtenerSprintsOrdenados(proyecto)
+          .filter(value => value.velocidadReal !== null && value.velocidadReal !== undefined);
+        const porcentajeDesviacionEstandar = this.standardDeviation(sprintsDelProyecto.map(value1 => value1.velocidadReal));
+        const equipoActualizado: Equipo = {
+          idProyecto: proyecto.id,
+          estado: null,
+          porcentajeDesviacionEstandar
+        };
+        equipos.push(equipoActualizado);
+      });
+      setTimeout(() => this.equipoDataService.setData(equipos), 2000);
     });
+  }
+
+  private standardDeviation(values: any[]) {
+    const avg = this.average(values);
+
+    const squareDiffs = values.map(function (value) {
+      const diff = value - avg;
+      const sqrDiff = diff * diff;
+      return sqrDiff;
+    });
+
+    const avgSquareDiff = this.average(squareDiffs);
+
+    const stdDev = Math.sqrt(avgSquareDiff);
+    return stdDev;
+  }
+
+  private average(data: any[]) {
+    const sum = data.reduce(function (x, value) {
+      return x + value;
+    }, 0);
+
+    const avg = sum / data.length;
+    return avg;
   }
 }

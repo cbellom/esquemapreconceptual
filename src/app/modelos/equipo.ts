@@ -4,6 +4,7 @@ export enum EstadoEquipo {
 }
 
 export interface Equipo {
+  idProyecto: number;
   estado: EstadoEquipo;
   porcentajeDesviacionEstandar: number;
 }

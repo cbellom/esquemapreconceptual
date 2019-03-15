@@ -5,17 +5,13 @@ import {Equipo} from '../modelos/equipo';
 @Injectable({
   providedIn: 'root'
 })
-export class EquipoDataService extends DataService<Equipo> {
+export class EquipoDataService extends DataService<Equipo[]> {
 
   protected initialize() {
-    this.identificacdor = 'equipo';
+    this.identificacdor = 'equipos';
     this.load();
     if (this.datos === null) {
-      const equipo: Equipo = {
-        estado: null,
-        porcentajeDesviacionEstandar: null
-      };
-      this.setData(equipo);
+      this.setData([]);
     }
   }
 
