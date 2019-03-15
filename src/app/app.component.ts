@@ -4,7 +4,7 @@ import {ProyectoDataService} from './servicios/proyecto-data.service';
 import {SprintsDataService} from './servicios/sprint-data.service';
 import {EquipoDataService} from './servicios/equipo-data.service';
 import {Sprint} from './modelos/sprint';
-import {Equipo} from './modelos/equipo';
+import {Equipo, EstadoEquipo} from './modelos/equipo';
 import {SprintBacklog} from './modelos/sprint-backlog';
 
 @Component({
@@ -29,13 +29,13 @@ export class AppComponent implements OnInit {
 
 
   private actualizarVelocidades() {
-    console.log('Actualizando velocidades');
     this.sprintbacklogDataService.datos$.subscribe(backlog => {
+      console.log('Actualizando velocidades');
       let sprints: Sprint[] = [];
       this.proyectoDataService.datos.forEach(proyecto => {
         let velocidadAnterior = null;
         const sprintsDelProyecto: Sprint[] = this.obtenerSprintsOrdenados(proyecto);
-        const sprintActualizados: Sprint[] = sprintsDelProyecto.map((sprint, index) => {
+        const sprintActualizados: Sprint[] = sprintsDelProyecto.map((sprint) => {
           sprint = this.actualizarVelocidadesSprint(sprint, velocidadAnterior, backlog);
           velocidadAnterior = sprint.velocidadReal;
           return sprint;
@@ -73,17 +73,26 @@ export class AppComponent implements OnInit {
   }
 
   private actualizarDesviacion() {
-    console.log('Actualizando desviacion estandar');
     this.sprintsDataService.datos$.subscribe(() => {
+      console.log('Actualizando desviacion estandar');
       const equipos: Equipo[] = [];
       this.proyectoDataService.datos.forEach(proyecto => {
         const sprintsDelProyecto: Sprint[] = this.obtenerSprintsOrdenados(proyecto)
-          .filter(value => value.velocidadReal !== null && value.velocidadReal !== undefined);
-        const porcentajeDesviacionEstandar = this.standardDeviation(sprintsDelProyecto.map(value1 => value1.velocidadReal));
+          .filter(value => value.velocidadReal !== null);
+        const desviacionEstandar = sprintsDelProyecto.length > 0
+          ? this.standardDeviation(sprintsDelProyecto.map(value1 => value1.velocidadReal))
+          : null;
+        const porcentajeDesviacionEstandar = sprintsDelProyecto.length > 0
+          ? desviacionEstandar / sprintsDelProyecto[sprintsDelProyecto.length - 1].velocidadEstimada * 100
+          : null;
         const equipoActualizado: Equipo = {
           idProyecto: proyecto.id,
-          estado: null,
-          porcentajeDesviacionEstandar
+          estado: porcentajeDesviacionEstandar !== null ? (porcentajeDesviacionEstandar <= 10
+            ? EstadoEquipo.formado
+            : EstadoEquipo.sembrado)
+          : null,
+          desviacionEstandar: desviacionEstandar,
+          porcentajeDesviacionEstandar: porcentajeDesviacionEstandar
         };
         equipos.push(equipoActualizado);
       });

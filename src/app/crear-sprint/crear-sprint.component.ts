@@ -51,8 +51,8 @@ export class CrearSprintComponent implements OnInit {
     const sprint: Sprint = {
       id: this.idSprint,
       idProyecto: this.proyecto.id,
-      velocidadEstimada: +this.velocidadEstimada,
-      velocidadReal: +this.velocidadReal,
+      velocidadEstimada: !isNaN(+this.velocidadEstimada) ? +this.velocidadEstimada : null,
+      velocidadReal: !isNaN(+this.velocidadReal) ? +this.velocidadReal : null,
       fechaInicio: this.fechaInicio,
       fechaFin: this.fechaFin,
       creador: this.miembro.id
