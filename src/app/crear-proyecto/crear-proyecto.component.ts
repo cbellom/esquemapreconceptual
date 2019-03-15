@@ -104,12 +104,7 @@ export class CrearProyectoComponent implements OnInit {
     const proyecto: Proyecto = {
       id: this.idProyecto,
       nombre: this.nombreProyecto,
-      creador: this.miembro.id,
-      trabajo: {
-        estado: null,
-        horizonteMaximo: null,
-        horizonteMinimo: null
-      }
+      creador: this.miembro.id
     };
     const proyectos = this.proyectoDataService.datos.concat(proyecto);
     this.proyectoDataService.setData(proyectos);

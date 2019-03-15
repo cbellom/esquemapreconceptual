@@ -103,10 +103,12 @@ export class AsignarHistoriaUsuarioComponent implements OnInit {
       width: '500px',
     });
     matDialogRef.afterClosed().subscribe(value => {
-      if (this.proyecto && this.proyecto.id !== value.id) {
-        this.historiaUsuario = null;
+      if (value) {
+        if (this.proyecto && this.proyecto.id !== value.id) {
+          this.historiaUsuario = null;
+        }
+        this.proyecto = value;
       }
-      this.proyecto = value;
     });
   }
 

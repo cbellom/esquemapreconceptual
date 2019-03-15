@@ -47,6 +47,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
 
   guardar() {
     const x: SprintBacklog = {
+      idProyecto: this.proyecto.id,
       idHistoriaUsuario: this.historiaUsuario.id,
       idSprint: this.sprint.id,
       tamano: this.tamano
@@ -101,6 +102,8 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     this.historiaUsuario = null;
     this.sprint = null;
     this.tamano = null;
+    this.miembro = null;
+    this.rol = null;
   }
 
   abrirMiembro() {
@@ -204,6 +207,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     });
     matDialogRef.afterClosed().subscribe(value => {
       this.historiaUsuario = value;
+      this.cargarMiembro(this.historiaUsuario.responsable);
     });
   }
 

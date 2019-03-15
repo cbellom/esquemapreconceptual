@@ -6,6 +6,8 @@ import {EquipoDataService} from './servicios/equipo-data.service';
 import {Sprint} from './modelos/sprint';
 import {Equipo, EstadoEquipo} from './modelos/equipo';
 import {SprintBacklog} from './modelos/sprint-backlog';
+import {TrabajoDataService} from './servicios/trabajo-data.service';
+import {EstadoTrabajo, Trabajo} from './modelos/trabajo';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,8 @@ export class AppComponent implements OnInit {
   constructor(private proyectoDataService: ProyectoDataService,
               private sprintsDataService: SprintsDataService,
               private equipoDataService: EquipoDataService,
-              private sprintbacklogDataService: SprintbacklogDataService) {
+              private sprintbacklogDataService: SprintbacklogDataService,
+              private trabajoDataService: TrabajoDataService) {
   }
 
   ngOnInit() {
@@ -42,12 +45,12 @@ export class AppComponent implements OnInit {
         });
         sprints = sprints.concat(sprintActualizados);
       });
-      setTimeout(() => this.sprintsDataService.setData(sprints), 2000);
+      setTimeout(() => this.sprintsDataService.setData(sprints), 1000);
     });
   }
 
   private actualizarVelocidadesSprint(sprint: Sprint, velocidadAnterior: number, backlog: SprintBacklog[]): Sprint {
-    const historiasDesarrolladas = backlog.filter(x => x.idSprint === sprint.id);
+    const historiasDesarrolladas = backlog.filter(x => x.idSprint === sprint.id && x.idProyecto === sprint.idProyecto);
     sprint.velocidadEstimada = velocidadAnterior;
     sprint.velocidadReal = historiasDesarrolladas.length === 0
       ? null
@@ -68,8 +71,39 @@ export class AppComponent implements OnInit {
   }
 
   private actualizarForecast() {
-    // TODO
-    console.log('Actualizando forecast horizont');
+    this.sprintsDataService.datos$.subscribe(() => {
+      console.log('Actualizando forecast horizont');
+      const trabajos: Trabajo[] = [];
+      this.proyectoDataService.datos.forEach(proyecto => {
+        const sprintsDelProyecto: Sprint[] = this.obtenerSprintsOrdenados(proyecto)
+          .filter(value => value.velocidadReal !== null);
+        const ultimoSprint = sprintsDelProyecto.length > 0 ? sprintsDelProyecto[sprintsDelProyecto.length - 1].id : null;
+        const ultimaVelEstimada = sprintsDelProyecto.length > 0
+          ? sprintsDelProyecto[sprintsDelProyecto.length - 1].velocidadEstimada
+          : null;
+        const desviacionEstandar = sprintsDelProyecto.length > 0
+          ? this.standardDeviation(sprintsDelProyecto.map(value1 => value1.velocidadReal))
+          : null;
+        const desviacionEstandarSobreVelEst = desviacionEstandar / ultimaVelEstimada;
+        const totalPuntosPorProyecto = this.sprintbacklogDataService.datos.filter(value => value.idProyecto === proyecto.id)
+          .reduce((a, b) => a + b.tamano, 0);
+        const horizonteMinimo = (totalPuntosPorProyecto / ultimaVelEstimada) - (desviacionEstandarSobreVelEst * (totalPuntosPorProyecto / ultimaVelEstimada));
+        const horizonteMaximo = (totalPuntosPorProyecto / ultimaVelEstimada) + (desviacionEstandarSobreVelEst * (totalPuntosPorProyecto / ultimaVelEstimada));
+        console.log(ultimoSprint, horizonteMinimo , horizonteMaximo)
+        const actualizado: Trabajo = {
+          estado: horizonteMinimo !== null && horizonteMaximo !== null && !isNaN(horizonteMinimo) && !isNaN(horizonteMaximo) && ultimoSprint !== null
+            ? ultimoSprint >= horizonteMinimo && ultimoSprint <= horizonteMaximo
+              ? EstadoTrabajo.correcta
+              : EstadoTrabajo.desviada
+            : null,
+          horizonteMaximo,
+          horizonteMinimo,
+          idProyecto: proyecto.id
+        };
+        trabajos.push(actualizado);
+      });
+      setTimeout(() => this.trabajoDataService.setData(trabajos), 1000);
+    });
   }
 
   private actualizarDesviacion() {
@@ -90,13 +124,13 @@ export class AppComponent implements OnInit {
           estado: porcentajeDesviacionEstandar !== null ? (porcentajeDesviacionEstandar <= 10
             ? EstadoEquipo.formado
             : EstadoEquipo.sembrado)
-          : null,
+            : null,
           desviacionEstandar: desviacionEstandar,
           porcentajeDesviacionEstandar: porcentajeDesviacionEstandar
         };
         equipos.push(equipoActualizado);
       });
-      setTimeout(() => this.equipoDataService.setData(equipos), 2000);
+      setTimeout(() => this.equipoDataService.setData(equipos), 1000);
     });
   }
 
