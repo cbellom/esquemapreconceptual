@@ -45,3 +45,5 @@
 <div id="velocidad-real-sprint" class="item cursor-deshabilitado">
   <p>VELOCIDAD REAL = <span class="color-blue">{{velocidadReal}}</span></p>
 </div>
+
+<button mat-raised-button class="action" [disabled]="!datosRequeridosCompletos()" (click)="guardar()">CREAR</button>

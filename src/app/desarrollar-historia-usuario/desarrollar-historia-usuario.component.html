@@ -65,3 +65,5 @@
   <p>VELOCIDAD REAL = <span class="color-blue">{{sprint  ? sprint.velocidadReal !== null  ? sprint?.velocidadReal : 'NULL' : ''}}</span>
   </p>
 </div>
+
+<button mat-raised-button class="action" [disabled]="!datosRequeridosCompletos()" (click)="guardar()">DESARROLLA</button>

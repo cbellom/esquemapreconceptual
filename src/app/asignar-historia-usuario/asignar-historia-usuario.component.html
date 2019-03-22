@@ -45,3 +45,5 @@
 <div id="tamano-historia" class="item" (click)="abrirHistoriaUsuario()">
   <p>TAMAÑO = <span class="color-blue">{{historiaUsuario?.responsable}}</span></p>
 </div>
+
+<button mat-raised-button class="action" [disabled]="!datosRequeridosCompletos()" (click)="guardar()">ASIGNA</button>

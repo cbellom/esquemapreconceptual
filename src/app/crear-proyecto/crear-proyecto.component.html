@@ -30,3 +30,5 @@
 <div id="nombre-proyecto" class="item" (click)="abrirNombre()">
   <p>NOMBRE = <span class="color-blue">{{nombreProyecto}}</span></p>
 </div>
+
+<button mat-raised-button class="action" [disabled]="!datosRequeridosCompletos()" (click)="guardar()">CREAR</button>

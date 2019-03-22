@@ -49,5 +49,6 @@
   <p>TAMAÑO = <span class="color-blue">{{tamanoHistoria}}</span></p>
 </div>
 
+<button mat-raised-button class="action" [disabled]="!datosRequeridosCompletos()" (click)="guardar()">CREAR</button>
 
-<pre>{{historias$ | async}}</pre>
+<!--<pre>{{historias$ | async}}</pre>-->
