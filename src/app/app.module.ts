@@ -25,6 +25,7 @@ import {SeleccionarHistoriaUsuarioComponent} from './modal/seleccionar-historia-
 import {CargarDatosModalComponent} from './modal/cargar-datos-modal/cargar-datos-modal.component';
 import { TrabajoComponent } from './trabajo/trabajo.component';
 import { EquipoComponent } from './equipo/equipo.component';
+import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EquipoComponent } from './equipo/equipo.component';
     SeleccionarHistoriaUsuarioComponent,
     CargarDatosModalComponent,
     TrabajoComponent,
-    EquipoComponent
+    EquipoComponent,
+    SprintBacklogComponent
   ],
   imports: [
     BrowserModule,

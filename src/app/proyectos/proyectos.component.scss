@@ -1,52 +1,7 @@
-.projects-container {
-  margin: 0 auto;
-  padding: 30px;
-  text-align: center;
-  width: 80%;
-  .title {
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .grid-info, .labels {
-    background: #f1f1f1;
-    border: 1px solid #333;
-    border-bottom: none;
-    color: #333;
-    display: flex;
-    margin: 0 auto;
-    width: 80%;
-    .ids, .names, .column {
-      border-right: 1px solid #333;
-      padding: 10px;
-      text-align: center;
-      width: 40%;
-    }
-    .ids {
-      width: 20%;
-    }
-    .creators {
-      padding: 10px;
-      text-align: center;
-      width: 40%;
-    }
-    &:nth-child(2n) {
-      background: #fff;
-    }
-    &:last-child {
-      border-bottom: 1px solid #333;
-    }
-  }
-  .labels {
-    font-weight: bold;
-    text-transform: uppercase;
-    .column {
-      width: 40%;
-      &:first-child {
-        width: 20%;
-      }
-      &:last-child {
-        border-right: none;
-      }
-    }
-  }
+mat-toolbar {
+  position: relative;
+}
+mat-grid-list {
+  max-width: 1024px;
+  margin: auto;
 }

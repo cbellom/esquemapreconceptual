@@ -1,20 +1,23 @@
-<div class="roles-container">
-  <h2 class="title">Roles</h2>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="navegarEsquema()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Roles</span>
+    <span class="toolbar-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-  <section class="labels">
-    <div class="column">
-      ID
-    </div>
-    <div class="column">
-      NOMBRE
-    </div>
-  </section>
-  <section class="grid-info" *ngFor="let role of roles">
-    <div class="ids">
-      {{role.id}}
-    </div>
-    <div class="names">
-      {{role.nombre}}
-    </div>
-  </section>
-</div>
+<mat-card>
+  <mat-grid-list cols="2" rowHeight="50px">
+    <mat-grid-tile [style.background]="'lightblue'">Id</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Nombre</mat-grid-tile>
+    <ng-container *ngFor="let x of roles">
+      <mat-grid-tile>{{x.id}}</mat-grid-tile>
+      <mat-grid-tile>{{x.nombre}}</mat-grid-tile>
+    </ng-container>
+    <ng-container *ngIf="roles.length === 0">
+      <mat-grid-tile [colspan]="2" [style.background]="'#eeeeee'">No hay datos</mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</mat-card>

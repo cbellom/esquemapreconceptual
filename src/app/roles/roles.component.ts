@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RolDataService} from '../servicios/rol-data.service';
 import {Rol} from '../modelos/rol';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -9,13 +10,19 @@ import {Rol} from '../modelos/rol';
   styleUrls: ['./roles.component.scss']
 })
 export class RolesComponent implements OnInit {
+  private roles: Rol[] = [];
 
-  constructor(public rolDataService: RolDataService) {
+  constructor(private router: Router,
+              public rolDataService: RolDataService) {
   }
 
-  roles: Rol[] = this.rolDataService.datos;
-
   ngOnInit() {
+    this.roles = this.rolDataService.datos;
+  }
+
+
+  navegarEsquema() {
+    this.router.navigateByUrl('/esquema');
   }
 
 }

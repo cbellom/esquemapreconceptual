@@ -16,7 +16,7 @@
     <mat-grid-tile [style.background]="'lightblue'">Porcentaje de desviacion estandar</mat-grid-tile>
     <ng-container *ngFor="let e of equipos">
       <mat-grid-tile>{{obtenerNombreProyecto(e.idProyecto)}}</mat-grid-tile>
-      <mat-grid-tile>{{e.estado ? t.estado : 'NULL'}}</mat-grid-tile>
+      <mat-grid-tile>{{e.estado ? e.estado : 'NULL'}}</mat-grid-tile>
       <mat-grid-tile>{{e.desviacionEstandar ? e.desviacionEstandar : 'NULL'}}</mat-grid-tile>
       <mat-grid-tile>{{e.porcentajeDesviacionEstandar ? e.porcentajeDesviacionEstandar: 'NULL'}}</mat-grid-tile>
     </ng-container>
