@@ -11,6 +11,8 @@ import {SprintsComponent} from './sprints/sprints.component';
 import {MiembrosComponent} from './miembros/miembros.component';
 import {RolesComponent} from './roles/roles.component';
 import {HistoriasUsuarioComponent} from './historias-usuario/historias-usuario.component';
+import {TrabajoComponent} from './trabajo/trabajo.component';
+import {EquipoComponent} from './equipo/equipo.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/esquema', pathMatch: 'full'},
@@ -25,6 +27,8 @@ const routes: Routes = [
   {path: 'historias-usuario', component: HistoriasUsuarioComponent},
   {path: 'miembros', component: MiembrosComponent},
   {path: 'roles', component: RolesComponent},
+  {path: 'trabajo', component: TrabajoComponent},
+  {path: 'equipo', component: EquipoComponent}
 ];
 
 @NgModule({

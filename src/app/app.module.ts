@@ -23,6 +23,8 @@ import {SeleccionarProyectoComponent} from './modal/seleccionar-proyecto/selecci
 import {SeleccionarSprintComponent} from './modal/seleccionar-sprint/seleccionar-sprint.component';
 import {SeleccionarHistoriaUsuarioComponent} from './modal/seleccionar-historia-usuario/seleccionar-historia-usuario.component';
 import {CargarDatosModalComponent} from './modal/cargar-datos-modal/cargar-datos-modal.component';
+import { TrabajoComponent } from './trabajo/trabajo.component';
+import { EquipoComponent } from './equipo/equipo.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {CargarDatosModalComponent} from './modal/cargar-datos-modal/cargar-datos
     SeleccionarProyectoComponent,
     SeleccionarSprintComponent,
     SeleccionarHistoriaUsuarioComponent,
-    CargarDatosModalComponent
+    CargarDatosModalComponent,
+    TrabajoComponent,
+    EquipoComponent
   ],
   imports: [
     BrowserModule,
