@@ -1,0 +1,11 @@
+<button mat-menu-item onclick="document.getElementById('fileToUpload').click()">
+  <mat-icon>search</mat-icon>
+  <span>{{ fileName ? fileName : 'Buscar archivo'}}</span>
+</button>
+<form [formGroup]="formGroup" novalidate (ngSubmit)="onSubmit()">
+  <input id="fileToUpload" type="file" style="display:none;" accept="application/json" (change)="onFileChange($event)" />
+  <button type="submit" [disabled]="formGroup.invalid || loading" mat-raised-button color="primary">
+    <span>Cargar</span>
+  </button>
+</form>
+<mat-progress-bar *ngIf="loading" mode="indeterminate" ></mat-progress-bar>
