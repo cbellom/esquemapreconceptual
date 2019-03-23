@@ -10,7 +10,7 @@ import {SprintBacklog} from '../modelos/sprint-backlog';
 export class SprintbacklogDataService extends DataService<SprintBacklog[]> {
 
   protected initialize() {
-    this.identificacdor = 'sprint-backlog';
+    this.identificacdor = 'sprintbacklog';
     this.load();
     if (this.datos === null) {
       this.setData([]);

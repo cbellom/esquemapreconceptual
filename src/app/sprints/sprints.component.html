@@ -1,51 +1,31 @@
-<div class="sprints-container">
-  <h2 class="title">Sprints del Proyecto  (Nombre del Proyecto)</h2>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="navegarEsquema()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Sprints</span>
+    <span class="toolbar-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-  <section class="labels">
-    <div class="column">
-      #
-    </div>
-    <div class="column dates">
-      Proyecto
-    </div>
-    <div class="column dates">
-      FECHA INICIO
-    </div>
-    <div class="column dates">
-      FECHA FIN
-    </div>
-    <div class="column vels">
-      VEL. ESTIMADA
-    </div>
-    <div class="column vels">
-      VEL. REAL
-    </div>
-    <div class="column">
-      CREADOR
-    </div>
-  </section>
-  <section class="grid-info" *ngFor="let sprint of sprints; let i = index">
-    <div class="ids">
-      {{sprint.id}}
-    </div>
-    <div class="dates">
-      {{sprint.idProyecto}}
-    </div>
-    <div class="dates">
-      {{sprint.fechaInicio | date: 'dd/MM/yyyy'}}
-    </div>
-    <div class="dates">
-      {{sprint.fechaFin | date: 'dd/MM/yyyy'}}
-    </div>
-    <div class="vels">
-      {{sprint.velocidadEstimada}}
-    </div>
-    <div class="vels">
-     {{sprint.velocidadReal}}
-    </div>
-    <div class="creators">
-      {{creators[i]}}
-    </div>
-  </section>
-</div>
-
+<mat-card>
+  <mat-grid-list cols="6" rowHeight="50px">
+    <mat-grid-tile [style.background]="'lightblue'">Id sprint</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Proyecto</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Fecha inicio</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Fecha fin</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Velocidad estimada</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Velocidad real</mat-grid-tile>
+    <ng-container *ngFor="let x of sprints; let i = index">
+      <mat-grid-tile>{{x.id}}</mat-grid-tile>
+      <mat-grid-tile>{{obtenerNombreProyecto(x.idProyecto)}}</mat-grid-tile>
+      <mat-grid-tile>{{x.fechaInicio | date: 'dd/MM/yyyy'}}</mat-grid-tile>
+      <mat-grid-tile>{{x.fechaFin | date: 'dd/MM/yyyy'}}</mat-grid-tile>
+      <mat-grid-tile>{{x.velocidadEstimada ? x.velocidadEstimada : 'NULL'}}</mat-grid-tile>
+      <mat-grid-tile>{{x.velocidadReal? x.velocidadReal: 'NULL'}}</mat-grid-tile>
+    </ng-container>
+    <ng-container *ngIf="sprints.length === 0">
+      <mat-grid-tile [colspan]="6" [style.background]="'#eeeeee'">No hay datos</mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</mat-card>

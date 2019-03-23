@@ -43,7 +43,7 @@
   <p>RESPONSABLE = <span class="color-blue">{{historiaUsuario && miembro ? miembro.id : ''}}</span></p>
 </div>
 <div id="tamano-historia" class="item" (click)="abrirHistoriaUsuario()">
-  <p>TAMAÑO = <span class="color-blue">{{historiaUsuario?.responsable}}</span></p>
+  <p>TAMAÑO = <span class="color-blue">{{historiaUsuario?.tamano}}</span></p>
 </div>
 
 <button mat-raised-button class="action" [disabled]="!datosRequeridosCompletos()" (click)="guardar()">ASIGNA</button>

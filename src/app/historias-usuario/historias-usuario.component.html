@@ -1,45 +1,29 @@
-<div class="histories-container">
-  <h2 class="title">Historias de Usuario</h2>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="navegarEsquema()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Historias de usuario</span>
+    <span class="toolbar-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-  <section class="labels">
-    <div class="column">
-      ID
-    </div>
-    <div class="column">
-      DESCRIPCIÓN
-    </div>
-    <div class="column">
-      ESTADO
-    </div>
-    <div class="column names">
-      RESPONSABLE
-    </div>
-    <div class="column">
-      TAMAÑO
-    </div>
-    <div class="column names">
-      CREADOR
-    </div>
-  </section>
-  <section class="grid-info" *ngFor="let history of histories; let i = index">
-    <div class="ids">
-      {{history.id}}
-    </div>
-    <div class="description">
-      {{history.descripcion}}
-    </div>
-    <div class="data">
-      {{history.estado}}
-    </div>
-    <div class="names">
-      {{history.responsable?.id}}
-    </div>
-    <div class="ids">
-      {{history.tamano}}
-    </div>
-    <div class="names">
-      {{creators[i]}}
-    </div>
-  </section>
-</div>
-
+<mat-card>
+  <mat-grid-list cols="5" rowHeight="50px">
+    <mat-grid-tile [style.background]="'lightblue'">Id</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Descripción</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Estado</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Responsable</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Tamaño</mat-grid-tile>
+    <ng-container *ngFor="let x of histories; let i = index">
+      <mat-grid-tile>{{x.id}}</mat-grid-tile>
+      <mat-grid-tile>{{x.descripcion}}</mat-grid-tile>
+      <mat-grid-tile>{{x.estado}}</mat-grid-tile>
+      <mat-grid-tile>{{x.responsable ? x.responsable.nombre : ''}}</mat-grid-tile>
+      <mat-grid-tile>{{x.tamano}}</mat-grid-tile>
+    </ng-container>
+    <ng-container *ngIf="histories.length === 0">
+      <mat-grid-tile [colspan]="5" [style.background]="'#eeeeee'">No hay datos</mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</mat-card>

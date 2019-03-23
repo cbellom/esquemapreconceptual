@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="navegarEsquema()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Alfa de equipo</span>
+    <span class="toolbar-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+  <mat-grid-list cols="4" rowHeight="50px">
+    <mat-grid-tile [style.background]="'lightblue'">Proyecto</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Estado</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Desviacion estandar</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Porcentaje de desviacion estandar</mat-grid-tile>
+    <ng-container *ngFor="let e of equipos">
+      <mat-grid-tile>{{obtenerNombreProyecto(e.idProyecto)}}</mat-grid-tile>
+      <mat-grid-tile>{{e.estado ? e.estado : 'NULL'}}</mat-grid-tile>
+      <mat-grid-tile>{{e.desviacionEstandar ? e.desviacionEstandar : 'NULL'}}</mat-grid-tile>
+      <mat-grid-tile>{{e.porcentajeDesviacionEstandar ? e.porcentajeDesviacionEstandar: 'NULL'}}</mat-grid-tile>
+    </ng-container>
+    <ng-container *ngIf="equipos.length === 0">
+      <mat-grid-tile [colspan]="4" [style.background]="'#eeeeee'">No hay datos</mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</mat-card>

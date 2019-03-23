@@ -1,27 +1,25 @@
-<div class="projects-container">
-  <h2 class="title">Proyectos</h2>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="navegarEsquema()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Proyectos</span>
+    <span class="toolbar-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-  <section class="labels">
-    <div class="column">
-      ID
-    </div>
-    <div class="column">
-      NOMBRE
-    </div>
-    <div class="column">
-      CREADOR
-    </div>
-  </section>
-  <section class="grid-info" *ngFor="let project of projects; let i = index">
-    <div class="ids">
-      {{project.id}}
-    </div>
-    <div class="names">
-      {{project.nombre}}
-    </div>
-    <div class="creators">
-      {{creators[i]}}
-    </div>
-  </section>
-</div>
-
+<mat-card>
+  <mat-grid-list cols="3" rowHeight="50px">
+    <mat-grid-tile [style.background]="'lightblue'">Id</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Nombre</mat-grid-tile>
+    <mat-grid-tile [style.background]="'lightblue'">Creador</mat-grid-tile>
+    <ng-container *ngFor="let p of projects; let i = index">
+      <mat-grid-tile>{{p.id}}</mat-grid-tile>
+      <mat-grid-tile>{{p.nombre}}</mat-grid-tile>
+      <mat-grid-tile>{{creators[i]}}</mat-grid-tile>
+    </ng-container>
+    <ng-container *ngIf="projects.length === 0">
+      <mat-grid-tile [colspan]="3" [style.background]="'#eeeeee'">No hay datos</mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</mat-card>
