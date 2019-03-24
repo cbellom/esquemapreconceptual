@@ -12,9 +12,9 @@ import {Proyecto} from '../modelos/proyecto';
   styleUrls: ['./sprints.component.scss']
 })
 export class SprintsComponent implements OnInit {
-  private proyecto: Proyecto[] = [];
-  private sprints: Sprint[] = [];
-  private creators: string[] = [];
+  public proyecto: Proyecto[] = [];
+  public sprints: Sprint[] = [];
+  public creators: string[] = [];
 
   constructor(private router: Router,
               private sprintDataService: SprintsDataService,

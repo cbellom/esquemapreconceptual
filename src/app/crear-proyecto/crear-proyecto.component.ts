@@ -19,7 +19,7 @@ import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
   styleUrls: ['./crear-proyecto.component.scss']
 })
 export class CrearProyectoComponent implements OnInit {
-  private proyectos: Proyecto[];
+  public proyectos: Proyecto[];
   rol: Rol;
   miembro: Miembro;
   nombreProyecto: string;
@@ -79,14 +79,14 @@ export class CrearProyectoComponent implements OnInit {
     });
   }
 
-  private cargarMiembro(value) {
+  public cargarMiembro(value) {
     if (value) {
       this.miembro = value;
       this.rol = this.rolDataService.datos.find(value1 => value1.id === this.miembro.rol);
     }
   }
 
-  private cargarRol(value) {
+  public cargarRol(value) {
     if (value) {
       this.rol = value;
     }

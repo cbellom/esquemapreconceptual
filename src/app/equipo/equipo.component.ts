@@ -11,8 +11,8 @@ import {Equipo} from '../modelos/equipo';
   styleUrls: ['./equipo.component.scss']
 })
 export class EquipoComponent implements OnInit {
-  private proyecto: Proyecto[] = [];
-  private equipos: Equipo[] = [];
+  public proyecto: Proyecto[] = [];
+  public equipos: Equipo[] = [];
 
   constructor(private router: Router,
               private equipoDataService: EquipoDataService,

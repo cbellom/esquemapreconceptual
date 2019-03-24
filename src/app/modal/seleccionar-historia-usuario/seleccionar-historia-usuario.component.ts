@@ -12,7 +12,7 @@ import {HistoriaUsuario} from '../../modelos/historia-usuario';
 })
 export class SeleccionarHistoriaUsuarioComponent implements OnInit {
   historiaUsuario: HistoriaUsuario;
-  private historiaUsuarios: HistoriaUsuario[];
+  public historiaUsuarios: HistoriaUsuario[];
 
   constructor(private historiasUsuarioDataService: HistoriasUsuarioDataService,
               private dialogRef: MatDialogRef<SeleccionarHistoriaUsuarioComponent>,

@@ -11,8 +11,8 @@ import {Proyecto} from '../modelos/proyecto';
   styleUrls: ['./sprint-backlog.component.scss']
 })
 export class SprintBacklogComponent implements OnInit {
-  private datos: SprintBacklog[] = [];
-  private proyecto: Proyecto[] = [];
+  public datos: SprintBacklog[] = [];
+  public proyecto: Proyecto[] = [];
 
   constructor(private router: Router,
               private proyectoDataService: ProyectoDataService,

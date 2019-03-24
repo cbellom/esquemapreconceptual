@@ -10,8 +10,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./proyectos.component.scss']
 })
 export class ProyectosComponent implements OnInit {
-  private projects: Proyecto[] = [];
-  private creators: string[] = [];
+  public projects: Proyecto[] = [];
+  public creators: string[] = [];
 
   constructor(private router: Router,
               public proyectoDataService: ProyectoDataService,

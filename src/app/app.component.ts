@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  private actualizarVelocidades() {
+  public actualizarVelocidades() {
     this.sprintbacklogDataService.datos$.subscribe(backlog => {
       console.log('Actualizando velocidades');
       let sprints: Sprint[] = [];
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private actualizarVelocidadesSprint(sprint: Sprint, velocidadAnterior: number, backlog: SprintBacklog[]): Sprint {
+  public actualizarVelocidadesSprint(sprint: Sprint, velocidadAnterior: number, backlog: SprintBacklog[]): Sprint {
     const historiasDesarrolladas = backlog.filter(x => x.idSprint === sprint.id && x.idProyecto === sprint.idProyecto);
     sprint.velocidadEstimada = velocidadAnterior;
     sprint.velocidadReal = historiasDesarrolladas.length === 0
@@ -56,18 +56,18 @@ export class AppComponent implements OnInit {
     return sprint;
   }
 
-  private obtenerSprintsOrdenados(proyecto) {
+  public obtenerSprintsOrdenados(proyecto) {
     return this.sprintsDataService.datos.filter(sprint => {
       return sprint.idProyecto === proyecto.id;
     }).sort((a, b) => a.id - b.id);
   }
 
-  private actualizarMetricas() {
+  public actualizarMetricas() {
     this.actualizarDesviacion();
     this.actualizarForecast();
   }
 
-  private actualizarForecast() {
+  public actualizarForecast() {
     this.sprintsDataService.datos$.subscribe(() => {
       console.log('Actualizando forecast horizont');
       const trabajos: Trabajo[] = [];
@@ -103,7 +103,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private actualizarDesviacion() {
+  public actualizarDesviacion() {
     this.sprintsDataService.datos$.subscribe(() => {
       console.log('Actualizando desviacion estandar');
       const equipos: Equipo[] = [];
@@ -131,7 +131,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private standardDeviation(values: any[]) {
+  public standardDeviation(values: any[]) {
     const avg = this.average(values);
 
     const squareDiffs = values.map(function (value) {
@@ -146,7 +146,7 @@ export class AppComponent implements OnInit {
     return stdDev;
   }
 
-  private average(data: any[]) {
+  public average(data: any[]) {
     const sum = data.reduce(function (x, value) {
       return x + value;
     }, 0);

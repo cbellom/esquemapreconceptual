@@ -10,8 +10,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class SeleccionarRolComponent implements OnInit {
   rolSeleccionado: Rol;
-  private roles: Rol[];
-  private restriccionRoles: TipoRol[];
+  public roles: Rol[];
+  public restriccionRoles: TipoRol[];
 
   constructor(private rolDataService: RolDataService,
               private dialogRef: MatDialogRef<SeleccionarRolComponent>,

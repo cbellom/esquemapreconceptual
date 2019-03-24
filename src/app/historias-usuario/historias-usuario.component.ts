@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./historias-usuario.component.scss']
 })
 export class HistoriasUsuarioComponent implements OnInit {
-  private histories: HistoriaUsuario[];
+  public histories: HistoriaUsuario[];
 
   constructor(private router: Router,
               private historiasUsuarioDataService: HistoriasUsuarioDataService) {

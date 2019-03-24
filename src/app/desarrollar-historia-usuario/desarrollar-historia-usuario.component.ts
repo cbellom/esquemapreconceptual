@@ -24,12 +24,12 @@ import {HistoriasUsuarioDataService} from '../servicios/historia-usuario-data.se
   styleUrls: ['./desarrollar-historia-usuario.component.scss']
 })
 export class DesarrollarHistoriaUsuarioComponent implements OnInit {
-  private rol: Rol;
-  private miembro: Miembro;
-  private proyecto: Proyecto;
-  private sprint: Sprint;
-  private historiaUsuario: HistoriaUsuario;
-  private tamano: number;
+  public rol: Rol;
+  public miembro: Miembro;
+  public proyecto: Proyecto;
+  public sprint: Sprint;
+  public historiaUsuario: HistoriaUsuario;
+  public tamano: number;
 
   constructor(private router: Router,
               private dialog: MatDialog,
@@ -71,7 +71,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     this.borrarDatos();
   }
 
-  private obtenerHistoriasActualizadas(x: HistoriaUsuario): HistoriaUsuario[] {
+  public obtenerHistoriasActualizadas(x: HistoriaUsuario): HistoriaUsuario[] {
     const nuevo = this.historiasUsuarioDataService.datos.map(value => {
       if (value.id === x.id) {
         value.estado = x.estado;
@@ -81,7 +81,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     return nuevo;
   }
 
-  private obtenerBacklogActualizado(x: SprintBacklog): SprintBacklog[] {
+  public obtenerBacklogActualizado(x: SprintBacklog): SprintBacklog[] {
     let nuevo;
     const existe = !!this.sprintbacklogDataService.datos
       .find(value => value.idSprint === x.idSprint && value.idHistoriaUsuario === x.idHistoriaUsuario);
@@ -98,7 +98,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     return nuevo;
   }
 
-  private borrarDatos() {
+  public borrarDatos() {
     this.historiaUsuario = null;
     this.sprint = null;
     this.tamano = null;
@@ -106,14 +106,14 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     this.rol = null;
   }
 
-  private cargarMiembro(value) {
+  public cargarMiembro(value) {
     if (value) {
       this.miembro = value;
       this.rol = this.rolDataService.datos.find(value1 => value1.id === this.miembro.rol);
     }
   }
 
-  private cargarRol(value) {
+  public cargarRol(value) {
     if (value) {
       this.rol = value;
     }

@@ -19,15 +19,15 @@ import {SeleccionarProyectoComponent} from '../modal/seleccionar-proyecto/selecc
   styleUrls: ['./crear-sprint.component.scss']
 })
 export class CrearSprintComponent implements OnInit {
-  private rol: Rol;
-  private miembro: Miembro;
-  private sprints: Sprint[];
-  private proyecto: Proyecto;
-  private idSprint: number;
-  private fechaInicio: Date;
-  private fechaFin: Date;
-  private velocidadEstimada: string;
-  private velocidadReal: string;
+  public rol: Rol;
+  public miembro: Miembro;
+  public sprints: Sprint[];
+  public proyecto: Proyecto;
+  public idSprint: number;
+  public fechaInicio: Date;
+  public fechaFin: Date;
+  public velocidadEstimada: string;
+  public velocidadReal: string;
 
   constructor(private router: Router,
               private dialog: MatDialog,
@@ -96,14 +96,14 @@ export class CrearSprintComponent implements OnInit {
     });
   }
 
-  private cargarMiembro(value) {
+  public cargarMiembro(value) {
     if (value) {
       this.miembro = value;
       this.rol = this.rolDataService.datos.find(value1 => value1.id === this.miembro.rol);
     }
   }
 
-  private cargarRol(value) {
+  public cargarRol(value) {
     if (value) {
       this.rol = value;
     }

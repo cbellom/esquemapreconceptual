@@ -18,10 +18,10 @@ import {HistoriasUsuarioDataService} from '../servicios/historia-usuario-data.se
   styleUrls: ['./asignar-historia-usuario.component.scss']
 })
 export class AsignarHistoriaUsuarioComponent implements OnInit {
-  private rol: Rol;
-  private miembro: Miembro;
-  private proyecto: Proyecto;
-  private historiaUsuario: HistoriaUsuario;
+  public rol: Rol;
+  public miembro: Miembro;
+  public proyecto: Proyecto;
+  public historiaUsuario: HistoriaUsuario;
 
   constructor(private router: Router,
               private dialog: MatDialog,
@@ -46,7 +46,7 @@ export class AsignarHistoriaUsuarioComponent implements OnInit {
     this.borrarDatos();
   }
 
-  private obtenerHistoriasActualizadas(x: HistoriaUsuario): HistoriaUsuario[] {
+  public obtenerHistoriasActualizadas(x: HistoriaUsuario): HistoriaUsuario[] {
     const nuevo = this.historiasUsuarioDataService.datos.map(value => {
       if (value.id === x.id) {
         value.responsable = this.miembro;
@@ -57,7 +57,7 @@ export class AsignarHistoriaUsuarioComponent implements OnInit {
     return nuevo;
   }
 
-  private borrarDatos() {
+  public borrarDatos() {
     this.historiaUsuario = null;
     this.miembro = null;
   }
@@ -84,14 +84,14 @@ export class AsignarHistoriaUsuarioComponent implements OnInit {
     });
   }
 
-  private cargarMiembro(value) {
+  public cargarMiembro(value) {
     if (value) {
       this.miembro = value;
       this.rol = this.rolDataService.datos.find(value1 => value1.id === this.miembro.rol);
     }
   }
 
-  private cargarRol(value) {
+  public cargarRol(value) {
     if (value) {
       this.rol = value;
     }

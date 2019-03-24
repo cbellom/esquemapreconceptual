@@ -12,9 +12,9 @@ import {RolDataService} from '../../servicios/rol-data.service';
 })
 export class SeleccionarMiembroComponent implements OnInit {
   miembroSeleccionado: Miembro;
-  private miembros: Miembro[];
-  private restriccionRoles: TipoRol[];
-  private roles: Rol[];
+  public miembros: Miembro[];
+  public restriccionRoles: TipoRol[];
+  public roles: Rol[];
 
   constructor(private miembrosDataService: MiembrosDataService,
               private rolDataService: RolDataService,

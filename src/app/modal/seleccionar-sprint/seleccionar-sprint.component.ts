@@ -11,7 +11,7 @@ import {Proyecto} from '../../modelos/proyecto';
 })
 export class SeleccionarSprintComponent implements OnInit {
   sprintSeleccionado: Sprint;
-  private sprints: Sprint[];
+  public sprints: Sprint[];
 
   constructor(private sprintsDataService: SprintsDataService,
               private dialogRef: MatDialogRef<SeleccionarSprintComponent>,

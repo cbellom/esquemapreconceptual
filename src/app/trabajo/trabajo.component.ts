@@ -11,8 +11,8 @@ import {Proyecto} from '../modelos/proyecto';
   styleUrls: ['./trabajo.component.scss']
 })
 export class TrabajoComponent implements OnInit {
-  private trabajos: Trabajo[] = [];
-  private proyecto: Proyecto[] = [];
+  public trabajos: Trabajo[] = [];
+  public proyecto: Proyecto[] = [];
 
   constructor(private router: Router,
               private trabajoDataService: TrabajoDataService,

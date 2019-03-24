@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./roles.component.scss']
 })
 export class RolesComponent implements OnInit {
-  private roles: Rol[] = [];
+  public roles: Rol[] = [];
 
   constructor(private router: Router,
               public rolDataService: RolDataService) {

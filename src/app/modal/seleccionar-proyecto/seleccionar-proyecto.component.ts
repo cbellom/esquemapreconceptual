@@ -10,7 +10,7 @@ import {Proyecto} from '../../modelos/proyecto';
 })
 export class SeleccionarProyectoComponent implements OnInit {
   proyectoSeleccionado: Proyecto;
-  private proyectos: Proyecto[];
+  public proyectos: Proyecto[];
 
   constructor(private miembrosDataService: ProyectoDataService,
               private dialogRef: MatDialogRef<SeleccionarProyectoComponent>,

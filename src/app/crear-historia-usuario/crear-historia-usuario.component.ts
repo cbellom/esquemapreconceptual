@@ -20,15 +20,15 @@ import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
 })
 export class CrearHistoriaUsuarioComponent implements OnInit {
   guardarActivo: boolean;
-  private historias: HistoriaUsuario[];
-  private proyecto: Proyecto;
-  private rol: Rol;
-  private miembro: Miembro;
-  private idHistoria: number;
-  private descripcionHistoria: string;
-  private responsableHistoria: number;
-  private estadoHistoria: string;
-  private tamanoHistoria: number;
+  public historias: HistoriaUsuario[];
+  public proyecto: Proyecto;
+  public rol: Rol;
+  public miembro: Miembro;
+  public idHistoria: number;
+  public descripcionHistoria: string;
+  public responsableHistoria: number;
+  public estadoHistoria: string;
+  public tamanoHistoria: number;
 
   constructor(private router: Router,
               private dialog: MatDialog,
@@ -70,14 +70,14 @@ export class CrearHistoriaUsuarioComponent implements OnInit {
     });
   }
 
-  private cargarMiembro(value) {
+  public cargarMiembro(value) {
     if (value) {
       this.miembro = value;
       this.rol = this.rolDataService.datos.find(value1 => value1.id === this.miembro.rol);
     }
   }
 
-  private cargarRol(value) {
+  public cargarRol(value) {
     if (value) {
       this.rol = value;
     }
