@@ -15,8 +15,6 @@ import {EstadoTrabajo, Trabajo} from './modelos/trabajo';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'esquemapreconceptual';
-
 
   constructor(private proyectoDataService: ProyectoDataService,
               private sprintsDataService: SprintsDataService,
@@ -65,7 +63,6 @@ export class AppComponent implements OnInit {
   }
 
   private actualizarMetricas() {
-    // TODO
     this.actualizarDesviacion();
     this.actualizarForecast();
   }

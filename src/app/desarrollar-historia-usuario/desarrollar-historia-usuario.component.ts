@@ -106,28 +106,6 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
     this.rol = null;
   }
 
-  abrirMiembro() {
-    this.dialog.closeAll();
-    const matDialogRef = this.dialog.open(SeleccionarMiembroComponent, {
-      width: '500px',
-      data: {restriccionRoles: [TipoRol.desarrollador]}
-    });
-    matDialogRef.afterClosed().subscribe(value => {
-      this.cargarMiembro(value);
-    });
-  }
-
-  abrirRol() {
-    this.dialog.closeAll();
-    const matDialogRef = this.dialog.open(SeleccionarRolComponent, {
-      width: '500px',
-      data: {restriccionRoles: [TipoRol.desarrollador]}
-    });
-    matDialogRef.afterClosed().subscribe(value => {
-      this.cargarRol(value);
-    });
-  }
-
   private cargarMiembro(value) {
     if (value) {
       this.miembro = value;
@@ -155,7 +133,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
       }
     });
     matDialogRef.afterClosed().subscribe(value => {
-      if (value) {
+      if (value !== null && value !== undefined) {
         this.tamano = value;
       }
     });
@@ -212,7 +190,7 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
   }
 
   datosRequeridosCompletos(): boolean {
-    return !!this.proyecto && !!this.miembro && !!this.sprint && !!this.historiaUsuario && !!this.tamano;
+    return !!this.proyecto && !!this.miembro && !!this.sprint && !!this.historiaUsuario && this.tamano !== null && this.tamano !== undefined;
   }
 
 }
