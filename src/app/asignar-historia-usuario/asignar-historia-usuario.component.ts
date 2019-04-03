@@ -35,7 +35,7 @@ export class AsignarHistoriaUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.step = this.stepsDataService.getSteps().find(value => value.name === 'asignar-historia-usuario').items;
-    Promise.resolve().then(() => this.abrirInstrucciones());
+    //Promise.resolve().then(() => this.abrirInstrucciones());
   }
 
   abrirInstrucciones() {

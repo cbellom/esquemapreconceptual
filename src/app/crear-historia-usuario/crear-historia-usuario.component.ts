@@ -51,7 +51,7 @@ export class CrearHistoriaUsuarioComponent implements OnInit {
       this.historias = value;
     });
     this.step = this.stepsDataService.getSteps().find(value => value.name === 'crear-historia-usuario').items;
-    Promise.resolve().then(() => this.abrirInstrucciones());
+    //Promise.resolve().then(() => this.abrirInstrucciones());
   }
 
   abrirInstrucciones() {

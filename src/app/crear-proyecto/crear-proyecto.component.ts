@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProyectoDataService} from '../servicios/proyecto-data.service';
-import {Observable} from 'rxjs';
 import {Proyecto} from '../modelos/proyecto';
 import {Router} from '@angular/router';
-import {MiembrosDataService} from '../servicios/miembros-data.service';
 import {RolDataService} from '../servicios/rol-data.service';
 import {MatDialog} from '@angular/material';
 import {SeleccionarRolComponent} from '../modal/seleccionar-rol/seleccionar-rol.component';
@@ -45,7 +43,7 @@ export class CrearProyectoComponent implements OnInit {
     });
 
     this.step = this.stepsDataService.getSteps().find(value => value.name === 'crear-proyecto').items;
-    Promise.resolve().then(() => this.abrirInstrucciones());
+    //Promise.resolve().then(() => this.abrirInstrucciones());
   }
 
   abrirInstrucciones() {

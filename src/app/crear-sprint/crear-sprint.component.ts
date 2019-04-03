@@ -46,7 +46,7 @@ export class CrearSprintComponent implements OnInit {
       return this.sprints = value;
     });
     this.step = this.stepsDataService.getSteps().find(value => value.name === 'crear-sprint').items;
-    Promise.resolve().then(() => this.abrirInstrucciones());
+    //Promise.resolve().then(() => this.abrirInstrucciones());
   }
 
   abrirInstrucciones() {
