@@ -23,10 +23,11 @@ import {SeleccionarProyectoComponent} from './modal/seleccionar-proyecto/selecci
 import {SeleccionarSprintComponent} from './modal/seleccionar-sprint/seleccionar-sprint.component';
 import {SeleccionarHistoriaUsuarioComponent} from './modal/seleccionar-historia-usuario/seleccionar-historia-usuario.component';
 import {CargarDatosModalComponent} from './modal/cargar-datos-modal/cargar-datos-modal.component';
-import { TrabajoComponent } from './trabajo/trabajo.component';
-import { EquipoComponent } from './equipo/equipo.component';
-import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.component';
-import { InstruccionesComponent } from './modal/instrucciones/instrucciones.component';
+import {TrabajoComponent} from './trabajo/trabajo.component';
+import {EquipoComponent} from './equipo/equipo.component';
+import {SprintBacklogComponent} from './sprint-backlog/sprint-backlog.component';
+import {InstruccionesComponent} from './modal/instrucciones/instrucciones.component';
+import {APP_BASE_HREF, HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,11 @@ import { InstruccionesComponent } from './modal/instrucciones/instrucciones.comp
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: APP_BASE_HREF, useValue: '/'},
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
+
   bootstrap: [AppComponent],
   entryComponents: [
     SeleccionarRolComponent,
