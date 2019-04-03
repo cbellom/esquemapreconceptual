@@ -34,4 +34,4 @@ ng build --prod --base-href "https://cbellom.github.io/esquemapreconceptual/"
 npx ngh --dir=dist/esquemapreconceptual
 
 ## Demo
- https://cbellom.github.io/risk-software-edition/
+https://cbellom.github.io/esquemapreconceptual/
