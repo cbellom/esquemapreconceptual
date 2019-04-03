@@ -26,6 +26,7 @@ import {CargarDatosModalComponent} from './modal/cargar-datos-modal/cargar-datos
 import { TrabajoComponent } from './trabajo/trabajo.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.component';
+import { InstruccionesComponent } from './modal/instrucciones/instrucciones.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.componen
     CargarDatosModalComponent,
     TrabajoComponent,
     EquipoComponent,
-    SprintBacklogComponent
+    SprintBacklogComponent,
+    InstruccionesComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.componen
     SeleccionarProyectoComponent,
     SeleccionarSprintComponent,
     SeleccionarHistoriaUsuarioComponent,
-    CargarDatosModalComponent
+    CargarDatosModalComponent,
+    InstruccionesComponent
   ]
 })
 export class AppModule {

@@ -17,6 +17,8 @@ import {SeleccionarProyectoComponent} from '../modal/seleccionar-proyecto/selecc
 import {SeleccionarSprintComponent} from '../modal/seleccionar-sprint/seleccionar-sprint.component';
 import {SeleccionarHistoriaUsuarioComponent} from '../modal/seleccionar-historia-usuario/seleccionar-historia-usuario.component';
 import {HistoriasUsuarioDataService} from '../servicios/historia-usuario-data.service';
+import {InstruccionesComponent} from '../modal/instrucciones/instrucciones.component';
+import {StepsDataService} from '../servicios/steps.service';
 
 @Component({
   selector: 'app-desarrollar-historia-usuario',
@@ -30,15 +32,31 @@ export class DesarrollarHistoriaUsuarioComponent implements OnInit {
   public sprint: Sprint;
   public historiaUsuario: HistoriaUsuario;
   public tamano: number;
+  step: String[];
 
   constructor(private router: Router,
               private dialog: MatDialog,
               private rolDataService: RolDataService,
               private sprintbacklogDataService: SprintbacklogDataService,
+              private stepsDataService: StepsDataService,
               private historiasUsuarioDataService: HistoriasUsuarioDataService) {
   }
 
   ngOnInit() {
+    this.step = this.stepsDataService.getSteps().find(value => value.name === 'desarrollar-historia-usuario').items;
+    Promise.resolve().then(() => this.abrirInstrucciones());
+  }
+
+  abrirInstrucciones() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(InstruccionesComponent, {
+      width: '500px',
+      data: {specificSteps: this.step}
+    });
+
+    matDialogRef.afterClosed().subscribe(value => {
+      console.log('Cerrando instrucciones');
+    });
   }
 
   navegarEsquema() {

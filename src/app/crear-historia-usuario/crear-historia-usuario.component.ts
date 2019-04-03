@@ -12,6 +12,8 @@ import {Miembro} from '../modelos/miembro';
 import {Rol, TipoRol} from '../modelos/rol';
 import {IngresarValorHojaComponent} from '../modal/ingresar-valor-hoja/ingresar-valor-hoja.component';
 import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
+import {InstruccionesComponent} from '../modal/instrucciones/instrucciones.component';
+import {StepsDataService} from '../servicios/steps.service';
 
 @Component({
   selector: 'app-crear-historia-usuario',
@@ -29,10 +31,12 @@ export class CrearHistoriaUsuarioComponent implements OnInit {
   public responsableHistoria: number;
   public estadoHistoria: string;
   public tamanoHistoria: number;
+  step: String[];
 
   constructor(private router: Router,
               private dialog: MatDialog,
               private historiasUsuarioDataService: HistoriasUsuarioDataService,
+              private stepsDataService: StepsDataService,
               private rolDataService: RolDataService) {
   }
 
@@ -45,6 +49,20 @@ export class CrearHistoriaUsuarioComponent implements OnInit {
       this.historiasUsuarioDataService.datos$.subscribe(value => {
       this.idHistoria = value.length + 1;
       this.historias = value;
+    });
+    this.step = this.stepsDataService.getSteps().find(value => value.name === 'crear-historia-usuario').items;
+    Promise.resolve().then(() => this.abrirInstrucciones());
+  }
+
+  abrirInstrucciones() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(InstruccionesComponent, {
+      width: '500px',
+      data: {specificSteps: this.step}
+    });
+
+    matDialogRef.afterClosed().subscribe(value => {
+      console.log('Cerrando instrucciones');
     });
   }
 

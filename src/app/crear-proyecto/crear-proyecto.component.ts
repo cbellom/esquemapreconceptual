@@ -12,21 +12,26 @@ import {Rol, TipoRol} from '../modelos/rol';
 import {Miembro} from '../modelos/miembro';
 import {IngresarValorHojaComponent} from '../modal/ingresar-valor-hoja/ingresar-valor-hoja.component';
 import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
+import {InstruccionesComponent} from '../modal/instrucciones/instrucciones.component';
+import {StepsDataService} from '../servicios/steps.service';
 
 @Component({
   selector: 'app-crear-proyecto',
   templateUrl: './crear-proyecto.component.html',
   styleUrls: ['./crear-proyecto.component.scss']
 })
+
 export class CrearProyectoComponent implements OnInit {
   public proyectos: Proyecto[];
   rol: Rol;
   miembro: Miembro;
   nombreProyecto: string;
   idProyecto: number;
+  step: String[];
 
   constructor(private proyectoDataService: ProyectoDataService,
               private rolDataService: RolDataService,
+              private stepsDataService: StepsDataService,
               private dialog: MatDialog,
               private router: Router) {
   }
@@ -37,6 +42,21 @@ export class CrearProyectoComponent implements OnInit {
     this.proyectoDataService.datos$.subscribe(value => {
       this.idProyecto = value.length + 1;
       return this.proyectos = value;
+    });
+
+    this.step = this.stepsDataService.getSteps().find(value => value.name === 'crear-proyecto').items;
+    Promise.resolve().then(() => this.abrirInstrucciones());
+  }
+
+  abrirInstrucciones() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(InstruccionesComponent, {
+      width: '500px',
+      data: {specificSteps: this.step}
+    });
+
+    matDialogRef.afterClosed().subscribe(value => {
+      console.log('Cerrando instrucciones');
     });
   }
 

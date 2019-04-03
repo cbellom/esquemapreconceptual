@@ -1,6 +1,6 @@
 export enum EstadoTrabajo {
-  correcta = 'PLANEACION CORRECTA',
-  desviada = 'PLANEACION DESVIADA',
+  correcta = 'PREPARADO',
+  desviada = 'INICIADO',
 }
 
 export interface Trabajo {

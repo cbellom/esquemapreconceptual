@@ -12,6 +12,8 @@ import {MatDialog} from '@angular/material';
 import {IngresarValorHojaComponent} from '../modal/ingresar-valor-hoja/ingresar-valor-hoja.component';
 import {TipoDatoHoja} from '../modelos/tipo-dato-hoja';
 import {SeleccionarProyectoComponent} from '../modal/seleccionar-proyecto/seleccionar-proyecto.component';
+import {InstruccionesComponent} from '../modal/instrucciones/instrucciones.component';
+import {StepsDataService} from '../servicios/steps.service';
 
 @Component({
   selector: 'app-crear-sprint',
@@ -28,10 +30,12 @@ export class CrearSprintComponent implements OnInit {
   public fechaFin: Date;
   public velocidadEstimada: string;
   public velocidadReal: string;
+  step: String[];
 
   constructor(private router: Router,
               private dialog: MatDialog,
               private rolDataService: RolDataService,
+              private stepsDataService: StepsDataService,
               private sprintsDataService: SprintsDataService) {
   }
 
@@ -40,6 +44,20 @@ export class CrearSprintComponent implements OnInit {
     this.cargarVelocidadReal();
     this.sprintsDataService.datos$.subscribe(value => {
       return this.sprints = value;
+    });
+    this.step = this.stepsDataService.getSteps().find(value => value.name === 'crear-sprint').items;
+    Promise.resolve().then(() => this.abrirInstrucciones());
+  }
+
+  abrirInstrucciones() {
+    this.dialog.closeAll();
+    const matDialogRef = this.dialog.open(InstruccionesComponent, {
+      width: '500px',
+      data: {specificSteps: this.step}
+    });
+
+    matDialogRef.afterClosed().subscribe(value => {
+      console.log('Cerrando instrucciones');
     });
   }
 

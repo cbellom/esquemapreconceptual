@@ -1,0 +1,9 @@
+<div class="content">
+  <h4>Instrucciones</h4>
+  <div class="steps-container">
+    <p class="step-item" *ngFor="let item of specificSteps; let idx of index">
+      {{item}}
+    </p>
+  </div>
+  <button mat-raised-button color="primary" (click)="cerrar()">Listo</button>
+</div>
